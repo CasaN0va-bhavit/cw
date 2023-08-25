@@ -1,0 +1,136 @@
+require('dotenv').config()
+const express = require('express');
+const bcrypt = require("bcrypt")
+const passport = require('passport');
+const flash = require('express-flash');
+const session = require('express-session');
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
+const methodOverride = require('method-override')
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+var validator = require("node-email-validation");
+
+
+
+const User = require('./models/Schema');
+
+const initializePassport = require("./passport");
+initializePassport(
+    passport,
+    email => User.findOne({ email: email }),
+    id => User.findById(id)
+)
+
+
+const app = express();
+app.use(express.urlencoded({ extended: false }))
+app.set("view-engine", "ejs")
+app.set('views', 'views')
+app.use(cookieParser())
+app.use(express.json())
+app.use(flash())
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+        maxAge: 60000 * 60 * 24
+    },
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride('_method'))
+app.use(express.static('public'))
+
+app.get("/", (req,res) => {
+    res.render("index.ejs")
+});
+
+app.get("/login", checkNotAuthenticated, (req,res) => {
+    res.render("login.ejs")
+});
+
+app.post("/login", (req, res, next) => {
+    loginUser(req, res, next)
+})
+
+app.get("/signup", checkNotAuthenticated, (req,res) => {
+    res.render("signup.ejs")
+});
+
+app.post('/logout', checkAuthenticated, (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            
+        }
+    })
+    res.clearCookie('username')
+    res.redirect('/login');
+});
+
+app.post("/signup", async (req, res) => {
+    if (!req.body.username || !req.body.email || !req.body.password) {
+        res.send("Email or password or username missing.")
+    }
+    else {
+        const validOrNot = validator.is_email_valid(req.body.email);
+        if (validOrNot) {
+            try {
+                const hashedPassword = await bcrypt.hash(req.body.password, 10);
+                const newUser = new User({
+                    name: req.body.username,
+                    email: req.body.email,
+                    password: hashedPassword,
+                });
+                
+                await newUser.save();
+                console.log(newUser);
+                res.redirect('/login');
+            } catch (error) {
+                console.log(error);
+                res.redirect('/signup');
+            }
+        }
+        else {
+            res.send("Enter a valid email.")
+        }
+    }
+})
+
+function loginUser(req, res, next) {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) throw err;
+        if (!user) req.flash('error', `${info.message}.`);
+        else {
+            req.logIn(user, (err) => {
+                if (err) throw err;
+                res.cookie("username", user.email)
+                res.redirect('/');
+            });
+        }
+    })(req, res, next);
+}
+
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+
+
+    res.redirect('/login')
+}
+
+function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return res.redirect('/')
+    }
+
+    next()
+}
+
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, function(){
+   console.log('Server started at port 3000');
+});
