@@ -73,8 +73,10 @@ app.post("/signup", async (req, res) => {
         res.send("Email or password or username missing.")
     }
     else {
-        const validOrNot = validator.is_email_valid(req.body.email);
-        if (validOrNot) {
+        // const validOrNot = validator.is_email_valid(req.body.email);
+        const validOrNot = true;
+        const requiredUser = await User.findOne({name: req.cookies["username"]})
+        if (validOrNot && requiredUser) {
             try {
                 const hashedPassword = await bcrypt.hash(req.body.password, 10);
                 const newUser = new User({
@@ -92,7 +94,7 @@ app.post("/signup", async (req, res) => {
             }
         }
         else {
-            res.send("Enter a valid email.")
+            res.send("Enter a valid email or this user already exists.")
         }
     }
 })
