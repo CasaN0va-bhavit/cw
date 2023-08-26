@@ -78,15 +78,19 @@ app.post("/post-message", async (req,res) => {
     const requiredUser = await User.findOne({email: req.cookies["username"]})
     try {
         const message = req.body.message
-        var a = message.split(""),
-        n = a.length;
-        for(var i = n - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var tmp = a[i];
-            a[i] = a[j];
-            a[j] = tmp;
+        var decryptedMessage = "";
+        const words = message.split(" ")
+        for (var i = 0; i < words.length; i ++) {
+            try {
+                var response = await fetch(`http://www.anagramica.com/all/${words[i]}`)
+                var data = await response.json()
+                console.log(data)
+                decryptedMessage = decryptedMessage + " " +data.all[0]
+            }
+            catch {
+                decryptedMessage = decryptedMessage + " " + words[i]
+            }
         }
-        const decryptedMessage = a.join("");
         const newMessage = new Chat({
             name: requiredUser.name,
             message: decryptedMessage,
