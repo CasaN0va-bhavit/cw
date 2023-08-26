@@ -10,9 +10,17 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 var validator = require("node-email-validation");
 
+mongoose.connect("mongodb+srv://bhavitgrover:c7Yxq8IEGeaZSYh7@login.ly7rioo.mongodb.net/?retryWrites=true&w=majority")
+.then(() => {
+    console.log("Mongo Connected");
+})
+.catch(() => {
+    console.log("failed you loser");
+})
 
 
 const User = require('./models/Schema');
+const Chat = require('./models/ChatSchema');
 
 const initializePassport = require("./passport");
 initializePassport(
@@ -42,9 +50,46 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 
-app.get("/", (req,res) => {
-    res.render("index.ejs")
+app.get("/", async (req,res) => {
+    const messages = await Chat.find()
+    const details = []
+    for (var i = 0; i <= messages.length; i ++) {
+        try {
+            if (i != undefined) {
+                var detail = {
+                    name: messages[i].name,
+                    message: messages[i].message
+                }
+                // console.log(messages[i].name)
+                // console.log(messages[i].message)
+                // console.log(detail)
+                details.push(detail)
+                detail = {}
+            }
+        } catch (error) {
+            
+        }
+    }
+    console.log(details)
+    // console.log(messages)
+    return res.render("index.ejs", {await details})
 });
+
+app.post("/post-message", async (req,res) => {
+    const requiredUser = await User.findOne({email: req.cookies["username"]})
+    try {
+        const message = req.body.message
+        const newMessage = new Chat({
+            name: requiredUser.name,
+            message: message 
+        })
+
+        await newMessage.save()
+        res.redirect("/")
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 app.get("/login", checkNotAuthenticated, (req,res) => {
     res.render("login.ejs")

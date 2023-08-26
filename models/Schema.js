@@ -1,15 +1,7 @@
 const mongoose = require('mongoose');
 
 // c7Yxq8IEGeaZSYh7
-
-mongoose.connect("mongodb+srv://bhavitgrover:c7Yxq8IEGeaZSYh7@login.ly7rioo.mongodb.net/?retryWrites=true&w=majority")
-.then(() => {
-    console.log("Mongo Connected");
-})
-.catch(() => {
-    console.log("failed you loser");
-})
-
+// LLKr6nVahSddfruG
 
 const userSchema = new mongoose.Schema({
     name: {
