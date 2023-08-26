@@ -16,6 +16,12 @@
         <input type="text" name="message">
         <button type="submit">Submit</button>
     </form>
+
+    <form action="/profile" method="POST" enctype="multipart/form-data">
+        <input type="file" name="img"/>
+        <button type="submit">Submit</button>
+    </form>
+
         <% for (var i = 0; i < details.length; i ++) { %>
             <p><%= details[i].name %>:</p>
             <p><%= details[i].message %></p>

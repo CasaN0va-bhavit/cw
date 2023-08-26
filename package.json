@@ -21,6 +21,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^7.4.5",
     "morse-decoder": "^3.0.1",
+    "multer": "^1.4.5-lts.1",
     "node-email-validation": "^1.0.4",
     "nodemon": "^3.0.1",
     "passport": "^0.6.0",

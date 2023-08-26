@@ -8,6 +8,9 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
 var validator = require("node-email-validation");
 
 mongoose.connect("mongodb+srv://bhavitgrover:c7Yxq8IEGeaZSYh7@login.ly7rioo.mongodb.net/?retryWrites=true&w=majority")
@@ -84,7 +87,13 @@ app.post("/post-message", async (req,res) => {
     } catch (error) {
         console.log(error)
     }
-})
+});
+
+app.post("/profile", upload.single('img'), (req, res) =>{
+    console.log(req.file);
+    console.log(req.body);
+    return res.redirect("/")
+});
 
 app.get("/login", checkNotAuthenticated, (req,res) => {
     res.render("login.ejs")
