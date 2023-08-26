@@ -16,8 +16,9 @@
         <input type="text" name="message">
         <button type="submit">Submit</button>
     </form>
-        <% for (var i = 0; i <= details.length; i ++) { %>
-            <p><%= details[i].name %></p>
+        <% for (var i = 0; i < details.length; i ++) { %>
+            <p><%= details[i].name %>:</p>
+            <p><%= details[i].message %></p>
         <% } %>
 </body>
 </html>

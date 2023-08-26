@@ -50,30 +50,25 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 
-app.get("/", async (req,res) => {
-    const messages = await Chat.find()
-    const details = []
-    for (var i = 0; i <= messages.length; i ++) {
-        try {
-            if (i != undefined) {
-                var detail = {
-                    name: messages[i].name,
-                    message: messages[i].message
-                }
-                // console.log(messages[i].name)
-                // console.log(messages[i].message)
-                // console.log(detail)
-                details.push(detail)
-                detail = {}
+app.get("/", async (req, res) => {
+    const messages = await Chat.find();
+    const details = messages
+        .map((message) => {
+            try {
+                return {
+                    "name": message.name,
+                    "message": message.message
+                };
+            } catch (error) {
+                return null;
             }
-        } catch (error) {
-            
-        }
-    }
-    console.log(details)
-    // console.log(messages)
-    return res.render("index.ejs", {await details})
+        })
+        .filter((detail) => detail !== null);
+
+    console.log(details);
+    return res.render("index.ejs", { details });
 });
+
 
 app.post("/post-message", async (req,res) => {
     const requiredUser = await User.findOne({email: req.cookies["username"]})
@@ -121,7 +116,7 @@ app.post("/signup", async (req, res) => {
         // const validOrNot = validator.is_email_valid(req.body.email);
         const validOrNot = true;
         const requiredUser = await User.findOne({name: req.cookies["username"]})
-        if (validOrNot && requiredUser) {
+        if (validOrNot && true) {
             try {
                 const hashedPassword = await bcrypt.hash(req.body.password, 10);
                 const newUser = new User({
