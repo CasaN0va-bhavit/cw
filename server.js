@@ -9,7 +9,8 @@ const methodOverride = require('method-override')
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const path = require('path');
+const fs = require('fs');
 
 var validator = require("node-email-validation");
 
@@ -103,6 +104,60 @@ app.post("/post-message", async (req,res) => {
         console.log(error)
     }
 });
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads')
+    },
+    filename: function(req, file, cb) {
+
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+
+})
+const upload = multer({
+    storage: storage
+
+})
+
+app.post('/uploadFile', upload.single('myFile'), (req, res, next) => {
+    const file = req.file;
+    if (!file) {
+        const error = new Error('please upload a file');
+        error.httpStatusCode = 400;
+        return next(error);
+
+    }
+    res.send(file);
+});
+app.post('/uploadmultiple', upload.array('myFiles', 10), (req, res, next) => {
+    const files = req.files;
+    if (!files) {
+        const error = new Error('please upload a file');
+        error.httpStatusCode = 400;
+        return next(error);
+
+    }
+    res.send(files);
+});
+app.post('/uploadphoto', upload.single('myImage'), (req, res, next) => {
+    var img = fs.readFileSync(req.file.path);
+    var encode_image = img.toString('base64');
+    var finalImg = {
+        contentType: req.file.mimetype,
+        path: req.file.path,
+        image: new Buffer(encode_image, 'base64')
+    }
+    db.collection('image').insertOne(finalImg, (err, result) => {
+        console.log(result);
+        if (err) return console.log(err);
+        console.log('saved to database');
+        res.contentType(finalImg.contentType);
+        res.send(finalImg.image);
+    })
+
+})
+
 
 app.post("/profile", upload.single('img'), (req, res) =>{
     console.log(req.file);

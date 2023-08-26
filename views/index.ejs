@@ -16,14 +16,27 @@
         <input type="text" name="message">
         <button type="submit">Submit</button>
     </form>
+
+    <form action="/uploadFile" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myFile" />            
+        <input type="submit" value="upload file" />
+    </form>
+    <form action="/uploadMultiple" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myFiles" multiple>        
+        <input type="submit" value="upload files">
+    </form>            
+
+    <form action="/uploadPhoto" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myImage" accept="image/*">
+        <input type="submit" value="upload photo">    
+    </form>
+
         <% for (var i = 0; i < details.length; i ++) { %>
             <p><%= details[i].name %>:</p>
-            <p class="messages"><%= details[i].message %></p>
-            <div class="realMessage" style="display: none;">
-                <%= details[i].realMessage %>
-            </div>
+            <p id="messages"><%= details[i].message %></p>
+            <p style="display: none;" id="realMessages"><%= details[i].realMessage %></p>
         <% } %>
-            <button onclick="decrypt()">decrypt</button>
+    <button onclick="decrypt()">decrypt</button>
 
     <script>
         function decrypt() {
@@ -48,5 +61,6 @@
             }
         }
     </script>
+
 </body>
 </html>
