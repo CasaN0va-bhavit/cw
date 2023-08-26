@@ -10,6 +10,10 @@ const chatSchema = new mongoose.Schema({
     message: {
         type: String,
         required: true
+    },
+    realMessage : {
+        type: String,
+        required: true
     }
 })
 

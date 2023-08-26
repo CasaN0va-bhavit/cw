@@ -57,7 +57,8 @@ app.get("/", async (req, res) => {
             try {
                 return {
                     "name": message.name,
-                    "message": message.message
+                    "message": message.message,
+                    "realMessage": message.realMessage
                 };
             } catch (error) {
                 return null;
@@ -74,9 +75,19 @@ app.post("/post-message", async (req,res) => {
     const requiredUser = await User.findOne({email: req.cookies["username"]})
     try {
         const message = req.body.message
+        var a = message.split(""),
+        n = a.length;
+        for(var i = n - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = a[i];
+            a[i] = a[j];
+            a[j] = tmp;
+        }
+        const decryptedMessage = a.join("");
         const newMessage = new Chat({
             name: requiredUser.name,
-            message: message 
+            message: decryptedMessage,
+            realMessage: message
         })
 
         await newMessage.save()
@@ -115,8 +126,8 @@ app.post("/signup", async (req, res) => {
     else {
         // const validOrNot = validator.is_email_valid(req.body.email);
         const validOrNot = true;
-        const requiredUser = await User.findOne({name: req.cookies["username"]})
-        if (validOrNot && true) {
+        const requiredUser = await User.findOne({name: req.body.username})
+        if (validOrNot && requiredUser) {
             try {
                 const hashedPassword = await bcrypt.hash(req.body.password, 10);
                 const newUser = new User({

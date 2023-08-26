@@ -18,7 +18,23 @@
     </form>
         <% for (var i = 0; i < details.length; i ++) { %>
             <p><%= details[i].name %>:</p>
-            <p><%= details[i].message %></p>
+            <p id="messages"><%= details[i].message %></p>
+            <p style="display: none;" id="realMessages"><%= details[i].realMessage %></p>
         <% } %>
+    <button onclick="decrypt()">decrypt</button>
+
+    <script>
+        function decrypt() {
+            const pass = prompt("Enter the passcode to decrypt the messages:")
+            const messages = document.getElementById("messages")
+            const realMessages = document.getElementById("realMessages")
+            if (pass == 1234) {
+                messages.style.display = "none";
+                realMessages.style.display = "block";
+            } else {
+                alert("Wrong password")
+            }
+        }
+    </script>
 </body>
 </html>
