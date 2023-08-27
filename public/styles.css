@@ -1,0 +1,7 @@
+body{
+    width:100%;
+    height: 100vh;
+    background: url("https://cdn.discordapp.com/attachments/1080157954570993664/1145379953622384660/image.png"), lightgray 50% / cover no-repeat;
+    mix-blend-mode: multiply;
+    background-size: 1;
+}

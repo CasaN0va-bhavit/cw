@@ -72,7 +72,7 @@ app.get("/", async (req, res) => {
         .filter((detail) => detail !== null);
 
     console.log(details);
-    return res.render("index.ejs", { details });
+    return res.render("landing.ejs", { details });
 });
 
 

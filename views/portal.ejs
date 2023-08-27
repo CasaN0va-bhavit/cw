@@ -7,5 +7,20 @@
 </head>
 <body>
     portal
+
+    <script>
+        // Add an event listener to the document to listen for key presses
+        document.addEventListener("keydown", function(event) {
+            // Check if Alt, Ctrl, Shift, and L keys are pressed simultaneously
+            if (event.altKey && event.key === "q") {
+                window.location.href = "/";
+                console.log("yekyahi")
+                event.preventDefault();
+            }
+            else{
+                window.location.href = "/portal";
+            }
+        });
+    </script>
 </body>
 </html>
