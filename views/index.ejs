@@ -3,25 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
 </head>
 <body>
-    <nav class="nav">
-        <div class="link">
-            <img src="https://cdn.discordapp.com/attachments/1144664652484182147/1145334628928991252/image.png" alt="">
-            <h1>Menu</h1>
-        </div>
-        <div class="link">
-            <img src="https://cdn.discordapp.com/attachments/1144664652484182147/1145334948413325312/image.png" alt="">
-            <h1>ada-con</h1>
-        </div>
-        <div class="link">
-            <h1>Login</h1>
-            <img src="https://cdn.discordapp.com/attachments/1144664652484182147/1145335172376576180/image.png" alt="">
-        </div>
-    </nav>
-    <!-- <form action="/post-message" method="post">
+    <form action="/post-message" method="post">
         <input type="text" name="message">
         <button type="submit">Submit</button>
     </form>
@@ -54,21 +39,95 @@
         <button id="clickButton3">Click Me 3</button>
         <p>Click count: <span id="clickCount3">0</span></p>
     </div>
+    <script>
+        var button1 = document.getElementById("clickButton1");
+        var clickCountElement1 = document.getElementById("clickCount1");
+
+        var button2 = document.getElementById("clickButton2");
+        var clickCountElement2 = document.getElementById("clickCount2");
+
+        var button3 = document.getElementById("clickButton3");
+        var clickCountElement3 = document.getElementById("clickCount3");
+
+        var clickCount1 = 0;
+        var clickCount2 = 0;
+        var clickCount3 = 0;
+
+        button1.addEventListener("click", function() {
+            clickCount1++;
+            clickCountElement1.textContent = clickCount1;
+            if(clickCount1 == 3 && clickCount2 == 4 && clickCount3==5){
+            console.log("wohoo");
+            let xhr = new XMLHttpRequest();
+            let json = JSON.stringify({
+                isActive: true // This is the boolean value you want to send
+            });
+
+            xhr.open("POST", '/submit');
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+            xhr.send(json);
+        }
+        });
+
+        button2.addEventListener("click", function() {
+            clickCount2++;
+            clickCountElement2.textContent = clickCount2;
+            if(clickCount1 == 3 && clickCount2 == 4 && clickCount3==5){
+            console.log("wohoo");
+            let xhr = new XMLHttpRequest();
+            let json = JSON.stringify({
+                isActive: true // This is the boolean value you want to send
+            });
+
+            xhr.open("POST", '/submit');
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+            xhr.send(json);
+                
+        }
+        });
+
+        button3.addEventListener("click", function() {
+            clickCount3++;
+            clickCountElement3.textContent = clickCount3;
+            if(clickCount1 == 3 && clickCount2 == 4 && clickCount3==5){
+            console.log("wohoo");
+            let xhr = new XMLHttpRequest();
+            let json = JSON.stringify({
+                isActive: true // This is the boolean value you want to send
+            });
+
+            xhr.open("POST", '/submit');
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+            xhr.send(json);
+        }
+        });
+
+        if(clickCount1 == 3 && clickCount2 == 4 && clickCount3==5){
+            console.log("wohoo");
+            let xhr = new XMLHttpRequest();
+            let json = JSON.stringify({
+                isActive: true // This is the boolean value you want to send
+            });
+
+            xhr.open("POST", '/submit');
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+            xhr.send(json);
+        }
+    </script>
+
+
         <% for (var i = 0; i < details.length; i ++) { %>
             <p><%= details[i].name %>:</p>
-            <p class="messages"><%= details[i].message %></p>
-            <p style="display: none;" class="realMessage"><%= details[i].realMessage %></p>
+            <p id="messages"><%= details[i].message %></p>
+            <p style="display: none;" id="realMessages"><%= details[i].realMessage %></p>
         <% } %>
-    <button onclick="decrypt()">decrypt</button> -->
+    <button onclick="decrypt()">decrypt</button>
 
     <script>
-        document.addEventListener('keydown', (e) => {
-            e.preventDefault();
-            if (e.key === '`' && e.altKey) {
-                console.log('S key pressed with ctrl');
-                window.location.href = "/verify";
-            }
-        });
         function decrypt() {
             const pass = prompt("Enter the passcode to decrypt the messages:")
             var messages = document.getElementsByClassName("messages")
