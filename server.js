@@ -158,6 +158,28 @@ app.post('/uploadphoto', upload.single('myImage'), (req, res, next) => {
 
 })
 
+app.post("/submit", (req, res) => {
+    const data = req.body; 
+    const isActive = data.isActive;
+    console.log('Received boolean value:', isActive);
+    if(isActive){
+        console.log("redirected");
+        return res.redirect("/portal");
+    }
+    
+    else{
+        res.send("affa")
+    }
+});
+
+app.get("/verify", (req,res) => {
+    res.render("verify.ejs");
+
+});
+
+app.get("/portal", (req,res) => {
+    res.render("portal.ejs");
+});
 
 app.post("/profile", upload.single('img'), (req, res) =>{
     console.log(req.file);

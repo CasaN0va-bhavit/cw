@@ -6,35 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    hello bhai
-    <a href="/login">Login</a>
-    <a href="/signup">Signup</a>
-    <form action="/logout" method="POST">
-        <button type="submit">Logout</button>
-    </form>
-    <form action="/post-message" method="post">
-        <input type="text" name="message">
-        <button type="submit">Submit</button>
-    </form>
-
-    <form action="/uploadFile" enctype="multipart/form-data" method="POST">
-        <input type="file" name="myFile" />            
-        <input type="submit" value="upload file" />
-    </form>
-    <form action="/uploadMultiple" enctype="multipart/form-data" method="POST">
-        <input type="file" name="myFiles" multiple>        
-        <input type="submit" value="upload files">
-    </form>            
-
-    <form action="/uploadPhoto" enctype="multipart/form-data" method="POST">
-        <input type="file" name="myImage" accept="image/*">
-        <input type="submit" value="upload photo">    
-    </form>
-
-    <a href="/verify">
-        easter-egg
-    </a>
-
     <div>
         <button id="clickButton1">Click Me 1</button>
         <p>Click count: <span id="clickCount1">0</span></p>
@@ -64,6 +35,7 @@
             clickCountElement1.textContent = clickCount1;
             if(clickCount1 == 3 && clickCount2 == 4 && clickCount3==5){
             console.log("wohoo");
+            window.location.href = "/portal";
             let xhr = new XMLHttpRequest();
             let json = JSON.stringify({
                 isActive: true // This is the boolean value you want to send
@@ -81,6 +53,7 @@
             clickCountElement2.textContent = clickCount2;
             if(clickCount1 == 3 && clickCount2 == 4 && clickCount3==5){
             console.log("wohoo");
+            window.location.href = "/portal";
             let xhr = new XMLHttpRequest();
             let json = JSON.stringify({
                 isActive: true // This is the boolean value you want to send
@@ -98,6 +71,7 @@
             clickCount3++;
             clickCountElement3.textContent = clickCount3;
             if(clickCount1 == 3 && clickCount2 == 4 && clickCount3==5){
+            window.location.href = "/portal";
             console.log("wohoo");
             let xhr = new XMLHttpRequest();
             let json = JSON.stringify({
@@ -113,49 +87,17 @@
 
         if(clickCount1 == 3 && clickCount2 == 4 && clickCount3==5){
             console.log("wohoo");
+            window.location.href = "/portal";
             let xhr = new XMLHttpRequest();
             let json = JSON.stringify({
                 isActive: true // This is the boolean value you want to send
             });
-
+            
             xhr.open("POST", '/submit');
             xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
             xhr.send(json);
         }
     </script>
-
-
-        <% for (var i = 0; i < details.length; i ++) { %>
-            <p><%= details[i].name %>:</p>
-            <p id="messages"><%= details[i].message %></p>
-            <p style="display: none;" id="realMessages"><%= details[i].realMessage %></p>
-        <% } %>
-    <button onclick="decrypt()">decrypt</button>
-
-    <script>
-        function decrypt() {
-            const pass = prompt("Enter the passcode to decrypt the messages:")
-            var messages = document.getElementsByClassName("messages")
-            var realMessages = document.getElementsByClassName("realMessage")
-            console.log(realMessages.length);
-            console.log(messages, realMessages)
-            if (pass == 1234) {
-                if (realMessages) {
-                    for (var i = 0; i < realMessages.length; i ++) {
-                        realMessages[i].style.display = "block";
-                    }
-                }
-                if (messages) {
-                    for (var i = 0; i < messages.length; i ++) {
-                        messages[i].style.display = "none";
-                    }
-                }
-            } else {
-                alert("Wrong password")
-            }
-        }
-    </script>
-
 </body>
 </html>
