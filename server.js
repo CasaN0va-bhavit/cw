@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+var verified = false;
 
 var validator = require("node-email-validation");
 
@@ -162,6 +163,7 @@ app.post("/submit", (req, res) => {
     const data = req.body; 
     const isActive = data.isActive;
     console.log('Received boolean value:', isActive);
+    verified = true
     if(isActive){
         console.log("redirected");
         return res.redirect("/portal");
@@ -177,7 +179,7 @@ app.get("/verify", (req,res) => {
 
 });
 
-app.get("/portal", (req,res) => {
+app.get("/portal",checkNotVerified, (req,res) => {
     res.render("portal.ejs");
 });
 
@@ -248,7 +250,7 @@ function loginUser(req, res, next) {
             req.logIn(user, (err) => {
                 if (err) throw err;
                 res.cookie("username", user.email)
-                res.redirect('/');
+                res.redirect('/verify');
             });
         }
     })(req, res, next);
@@ -266,6 +268,14 @@ function checkAuthenticated(req, res, next) {
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return res.redirect('/')
+    }
+
+    next()
+}
+
+function checkNotVerified(req, res, next) {
+    if (verified === false) {
+        return res.redirect('/verify')
     }
 
     next()
