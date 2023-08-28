@@ -13,9 +13,9 @@
         document.addEventListener("keydown", function(event) {
             // Check if Alt, Ctrl, Shift, and L keys are pressed simultaneously
             if (event.altKey && event.key === "q") {
+                event.preventDefault();
                 window.location.href = "/";
                 console.log("yekyahi")
-                event.preventDefault();
             }
             else{
                 window.location.href = "/portal";

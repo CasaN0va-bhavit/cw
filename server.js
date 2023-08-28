@@ -25,9 +25,9 @@ mongoose.connect("mongodb+srv://bhavitgrover:c7Yxq8IEGeaZSYh7@login.ly7rioo.mong
     console.log("failed you loser");
 })
 
+
 const User = require('./models/Schema');
 const Chat = require('./models/ChatSchema');
-const File = require('./models/UploadSchema');
 
 const initializePassport = require("./passport");
 initializePassport(
@@ -59,7 +59,6 @@ app.use(express.static('public'))
 
 app.get("/", async (req, res) => {
     const messages = await Chat.find();
-    const files = await File.find();
     const details = messages
         .map((message) => {
             try {
@@ -73,14 +72,11 @@ app.get("/", async (req, res) => {
             }
         })
         .filter((detail) => detail !== null);
+
     console.log(details);
     return res.render("landing.ejs", { details });
 });
 
-
-app.get("/files", (req, res) => {
-    return res.render("files.ejs", { details });
-})
 
 app.post("/post-message", async (req,res) => {
     const requiredUser = await User.findOne({email: req.cookies["username"]})
@@ -113,27 +109,32 @@ app.post("/post-message", async (req,res) => {
     }
 });
 
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
+app.get("/missions", (req, res) => {
+    res.render("mission.ejs")
+})
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
         cb(null, 'uploads')
     },
-    filename: function (req, file, cb) {
-        var ext = file.originalname.substring(file.originalname.lastIndexOf('.'));
-        cb(null, file.fieldname + '-' + Date.now() + ext)
+    filename: function(req, file, cb) {
+
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
+
 })
-const store = multer({
+const upload = multer({
     storage: storage
 
 })
 
-app.post('/uploadmultiple', store.array('images', 10), (req, res, next) => {
-    const files = req.files;
-
-    if (!files) {
-        const error = new Error('Please choose files');
+app.post('/uploadFile', upload.single('myFile'), (req, res, next) => {
+    const file = req.file;
+    if (!file) {
+        const error = new Error('please upload a file');
         error.httpStatusCode = 400;
         return next(error);
+
     }
 
     let imgArray = files.map((file) => {
@@ -177,6 +178,33 @@ app.post('/uploadmultiple', store.array('images', 10), (req, res, next) => {
 app.get('/getfiles/:id', async(req,res) =>{
     const file = await File.find(req.params.id);
     res.send(file);
+});
+app.post('/uploadmultiple', upload.array('myFiles', 10), (req, res, next) => {
+    const files = req.files;
+    if (!files) {
+        const error = new Error('please upload a file');
+        error.httpStatusCode = 400;
+        return next(error);
+
+    }
+    res.send(files);
+});
+app.post('/uploadphoto', upload.single('myImage'), (req, res, next) => {
+    var img = fs.readFileSync(req.file.path);
+    var encode_image = img.toString('base64');
+    var finalImg = {
+        contentType: req.file.mimetype,
+        path: req.file.path,
+        image: new Buffer(encode_image, 'base64')
+    }
+    db.collection('image').insertOne(finalImg, (err, result) => {
+        console.log(result);
+        if (err) return console.log(err);
+        console.log('saved to database');
+        res.contentType(finalImg.contentType);
+        res.send(finalImg.image);
+    })
+
 })
 
 app.post("/submit", (req, res) => {
@@ -203,7 +231,7 @@ app.get("/portal",checkNotVerified, (req,res) => {
     res.render("portal.ejs");
 });
 
-app.post("/profile", store.single('formFile'), (req, res) =>{
+app.post("/profile", upload.single('img'), (req, res) =>{
     console.log(req.file);
     console.log(req.body);
     return res.redirect("/")
@@ -321,7 +349,6 @@ function checkNotVerified(req, res, next) {
     next()
 }
 
-module.exports = route;
 
 const PORT = process.env.PORT || 3000;
 
