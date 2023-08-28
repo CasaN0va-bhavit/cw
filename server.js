@@ -13,7 +13,6 @@ const path = require('path');
 const fs = require('fs');
 var verified = false;
 const route = require('express').Router();
-const controller = require('./controller');
 
 
 var validator = require("node-email-validation");
@@ -156,6 +155,7 @@ app.post('/uploadmultiple', store.array('images', 10), (req, res, next) => {
             await newUpload
                 .save();
             return { msg: `${files[index].originalname} Uploaded Successfully...!` };
+            res.redirect('/index');
         } catch (err) {
             if (err) {
                 if (err.name === 'MongoError' && error.code === 11000) {
