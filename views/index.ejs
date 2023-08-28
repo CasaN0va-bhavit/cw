@@ -10,19 +10,15 @@
         <input type="text" name="message">
         <button type="submit">Submit</button>
     </form>
-
-    <form action="/uploadFile" enctype="multipart/form-data" method="POST">
-        <input type="file" name="myFile" />            
-        <input type="submit" value="upload file" />
-    </form>
-    <form action="/uploadMultiple" enctype="multipart/form-data" method="POST">
-        <input type="file" name="myFiles" multiple>        
-        <input type="submit" value="upload files">
-    </form>            
-
-    <form action="/uploadPhoto" enctype="multipart/form-data" method="POST">
-        <input type="file" name="myImage" accept="image/*">
-        <input type="submit" value="upload photo">    
+    <form action="/uploadmultiple" enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="col-8">
+                <input type="file" name="images" class="form-control" id="formFile" multiple>
+            </div>
+            <div class="col-2">
+                <input type="submit" class="btn btn-warning" value="Upload Images">
+            </div>
+        </div>
     </form>
 
     <a href="/login">
@@ -50,6 +46,7 @@
     <button onclick="decrypt()">decrypt</button>
 
     <script>
+        document.on
         function decrypt() {
             const pass = prompt("Enter the passcode to decrypt the messages:")
             var messages = document.getElementsByClassName("messages")

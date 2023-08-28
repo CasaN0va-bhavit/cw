@@ -12,6 +12,9 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 var verified = false;
+const route = require('express').Router();
+const controller = require('./controller');
+
 
 var validator = require("node-email-validation");
 
@@ -23,9 +26,9 @@ mongoose.connect("mongodb+srv://bhavitgrover:c7Yxq8IEGeaZSYh7@login.ly7rioo.mong
     console.log("failed you loser");
 })
 
-
 const User = require('./models/Schema');
 const Chat = require('./models/ChatSchema');
+const File = require('./models/UploadSchema');
 
 const initializePassport = require("./passport");
 initializePassport(
@@ -57,6 +60,7 @@ app.use(express.static('public'))
 
 app.get("/", async (req, res) => {
     const messages = await Chat.find();
+    const files = await File.find();
     const details = messages
         .map((message) => {
             try {
@@ -70,11 +74,14 @@ app.get("/", async (req, res) => {
             }
         })
         .filter((detail) => detail !== null);
-
     console.log(details);
     return res.render("landing.ejs", { details });
 });
 
+
+app.get("/files", (req, res) => {
+    return res.render("files.ejs", { details });
+})
 
 app.post("/post-message", async (req,res) => {
     const requiredUser = await User.findOne({email: req.cookies["username"]})
@@ -107,61 +114,69 @@ app.post("/post-message", async (req,res) => {
     }
 });
 
-app.get("/missions", (req, res) => {
-    res.render("mission.ejs")
-})
-
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
         cb(null, 'uploads')
     },
-    filename: function(req, file, cb) {
-
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    filename: function (req, file, cb) {
+        var ext = file.originalname.substring(file.originalname.lastIndexOf('.'));
+        cb(null, file.fieldname + '-' + Date.now() + ext)
     }
-
 })
-const upload = multer({
+const store = multer({
     storage: storage
 
 })
 
-app.post('/uploadFile', upload.single('myFile'), (req, res, next) => {
-    const file = req.file;
-    if (!file) {
-        const error = new Error('please upload a file');
-        error.httpStatusCode = 400;
-        return next(error);
-
-    }
-    res.send(file);
-});
-app.post('/uploadmultiple', upload.array('myFiles', 10), (req, res, next) => {
+app.post('/uploadmultiple', store.array('images', 10), (req, res, next) => {
     const files = req.files;
+
     if (!files) {
-        const error = new Error('please upload a file');
+        const error = new Error('Please choose files');
         error.httpStatusCode = 400;
         return next(error);
+    }
 
-    }
-    res.send(files);
-});
-app.post('/uploadphoto', upload.single('myImage'), (req, res, next) => {
-    var img = fs.readFileSync(req.file.path);
-    var encode_image = img.toString('base64');
-    var finalImg = {
-        contentType: req.file.mimetype,
-        path: req.file.path,
-        image: new Buffer(encode_image, 'base64')
-    }
-    db.collection('image').insertOne(finalImg, (err, result) => {
-        console.log(result);
-        if (err) return console.log(err);
-        console.log('saved to database');
-        res.contentType(finalImg.contentType);
-        res.send(finalImg.image);
+    let imgArray = files.map((file) => {
+        let img = fs.readFileSync(file.path);
+        return encode_image = img.toString('base64');
+
     })
+    
+    let result = imgArray.map(async (src, index, images) => {
 
+        let finalImg = {
+            filename: files[index].originalname,
+            contentType: files[index].mimetype,
+            imageBase64: src
+        }
+        let newUpload = new File(finalImg);
+
+        try {
+            await newUpload
+                .save();
+            return { msg: `${files[index].originalname} Uploaded Successfully...!` };
+        } catch (err) {
+            if (err) {
+                if (err.name === 'MongoError' && error.code === 11000) {
+                    return Promise.reject({ error: `Duplicate ${files[index].originalname}. File Already exists...!` });
+                }
+                return Promise.reject({ error: err.message || `Cannot Upload ${files[index].originalname}` });
+            }
+        }
+    })   
+    Promise.all(result)
+        .then((msg) => {
+            res.json(msg);
+        })
+        .catch((err) => {
+            res.json(err);
+        })
+});
+
+app.get('/getfiles/:id', async(req,res) =>{
+    const file = await File.find(req.params.id);
+    res.send(file);
 })
 
 app.post("/submit", (req, res) => {
@@ -188,7 +203,7 @@ app.get("/portal",checkNotVerified, (req,res) => {
     res.render("portal.ejs");
 });
 
-app.post("/profile", upload.single('img'), (req, res) =>{
+app.post("/profile", store.single('formFile'), (req, res) =>{
     console.log(req.file);
     console.log(req.body);
     return res.redirect("/")
@@ -306,6 +321,7 @@ function checkNotVerified(req, res, next) {
     next()
 }
 
+module.exports = route;
 
 const PORT = process.env.PORT || 3000;
 
