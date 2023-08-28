@@ -1,0 +1,327 @@
+body{
+    width:100%;
+    height: 100vh;
+    background: url("https://cdn.discordapp.com/attachments/1080157954570993664/1145736114439721112/image.png");
+    /* mix-blend-mode: multiply; */
+    background-size: cover;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    /* background: #131314; */
+    /* opacity: 0.6; */
+    color: #fff;
+}
+
+@font-face {
+    font-family: 'hauoraregular';
+    src: url('hauora_sans/fonts/otf/Hauora-Regular.otf') format('opentype');
+         font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'brandberegular';
+    src: url('brandbe/brandbe/Brandbe Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.background {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    height: auto;
+    background-color: rgba(19, 19, 20, 0.94);
+    /* z-index: -10; */
+    /* margin-top: -vh; */
+    position: absolute;
+    top: 0;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.item2 {
+    align-self: center;
+    justify-self: center;
+}
+
+.item3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 3em 7em;
+    padding-left: 0 !important;
+}
+
+
+.line-container {
+    padding: 0 2em;
+}
+
+.item1 {
+    display: flex;
+    align-items: center;
+    margin-left: 5em;
+}
+
+.circle {
+    background-color: #fff;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    /* padding: 0.25em; */
+    margin: 0.25em;
+}
+
+.top, .bottom {
+    display: flex;
+    flex-direction: row;
+    /* margin: 0.25em;   */
+}
+
+.menu-text {
+    font-family: 'hauoraregular', sans-serif;
+    /* font-family: Hauora; */
+    font-size: 1.616vw;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+}
+
+.headings {
+    text-align: center;
+    height: fit-content;
+}
+
+.main-heading {
+    font-family: 'brandberegular', sans-serif;
+    font-size: 5.318vw;
+    margin: 0;
+}
+
+.sub-heading {
+    font-family: 'hauoraregular', sans-serif;
+    font-size: 1.010vw;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: normal;
+}
+
+
+.container2 {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: 2vw 15vw;
+    height: 100%;
+    gap: 2.525vw;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 2.525vw;
+    width: 50%;
+    height: 100%;
+}
+
+.top-div {
+    width: 100%;
+    height: 12.020vw;
+    flex-shrink: 0;
+    border-radius: 25.054px;
+    background: rgba(72, 61, 61, 0.11);
+    backdrop-filter: blur(18.790149688720703px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.top-div-heading {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 1.771vw;
+    font-family: 'hauoraregular', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 3vw;
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+.missionName {
+    font-family: 'brandberegular', sans-serif;
+    margin: 0.5vw 3vw;
+    font-size: 2.424vw;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid #F00 !important;
+    color: #fff;
+}
+
+.bottom-div {
+    width: 100%;
+    height: 31.869vw;
+    flex-shrink: 0;
+    border-radius: 25.054px;
+    background: rgba(72, 61, 61, 0.11);
+    backdrop-filter: blur(18.790149688720703px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5.051vw;
+}
+
+.bottom-div-heading {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 1.771vw;
+    font-family: 'hauoraregular', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 3vw;
+    margin-bottom: 0;
+    font-weight: 700;
+    /* justify-self: start; */
+}
+
+.map {
+    margin-top: -2.525vw;
+    margin-left: 3vw;
+    width: 25.657vw; 
+    height: 18.081vw;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 2.525vw;
+    width: 50%;
+    height: 70vh;
+}
+
+.top-div-right {
+    width: 90%;
+    height: 27.980vw;
+    flex-shrink: 0;
+    border-radius: 25.054px;
+    background: rgba(72, 61, 61, 0.11);
+    backdrop-filter: blur(18.790149688720703px);
+    display: flex;
+    flex-direction: column;
+    padding: 2vw 3vw;
+    padding-right: 0vw !important;
+}
+
+.top-div-right-main-heading {
+    color: #FFF;
+    font-family: 'brandberegular', sans-serif;
+    font-size: 4.848vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    margin: 0;
+    margin-top: 1vw;
+}
+
+.top-top-div-right {
+    height: 50%;
+    width: 100%;
+}
+.bottom-top-div-right {
+    height: 50%;
+    width: 100%;
+}
+
+.bottom-div-right {
+    width: 90%;
+    height: 4.646vw;
+    flex-shrink: 0;
+    border-radius: 25.054px;
+    background: #F00;
+    backdrop-filter: blur(18.790149688720703px);
+    display: flex;
+    flex-direction: row;
+    padding: 2vw 3vw;
+    padding-right: 0vw !important;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bottom-div-right svg {
+    margin-right: 2vw;
+}
+
+.top-div-heading-special {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.771vw;
+    font-family: 'hauoraregular', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    font-weight: 700;
+    margin: 0;
+}
+
+.card-align {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card-align svg {
+    margin-left: 3vw;
+    width: 4.091vw;
+    height: 4.040vw;
+}
+
+.name {
+    color: rgba(255, 255, 255, 0.65);
+    font-family: 'hauoraregular', sans-serif;
+    font-size: 1.010vw;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin: 0;
+}
+
+.agent-card {
+    width: 17.475vw;
+    height: 6.515vw;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 2px solid #F00;
+    background: rgba(72, 61, 61, 0.11);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.creds {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2vw;
+}
+
+.agent-card img {
+    width: 4.040vw;
+    height: 4.040vw;
+    flex-shrink: 0;
+}

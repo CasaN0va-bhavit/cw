@@ -1,7 +1,7 @@
 body{
     width:100%;
     height: 100vh;
-    background: url("https://cdn.discordapp.com/attachments/1144664652484182147/1145682291809603704/image.png");
+    background: url("https://cdn.discordapp.com/attachments/1080157954570993664/1145736114439721112/image.png");
     /* mix-blend-mode: multiply; */
     background-size: cover;
     z-index: 2;
@@ -96,7 +96,7 @@ body{
     /* position: absolute;
     top: 0; */
     width: 100%;
-    height: 80vh;
+    height: 81.9vh;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -177,63 +177,3 @@ body{
     margin-bottom: 1vw;
 }
 
-.card-container {
-    margin: 0 5vw;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2vw;
-}
-
-.card {
-    width: 26.5vw;
-    height: 15vw;
-    background: #171717;
-    border-radius: 7.5px;
-    margin-bottom: 2.5vw;
-    display: flex;
-    margin: 0.5vw;
-    scroll-behavior: smooth;
-}
-
-.image {
-    object-fit: cover;
-    border-radius: 100%;
-    margin: 2.5vw 2vw;
-    height: 10vw;
-    width: 10vw;
-}
-
-.cred {
-    margin-top: 1.75vw;
-    font-family: 'brandberegular' ,sans-serif;
-}
-
-.name {
-    font-weight: light;
-    font-size: 2vw;
-    width: 5vw;
-    letter-spacing: 1px;
-    display: block;
-    margin-block-start: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-}
-
-.role {
-    color: #F00;
-    margin-top: -1.25vw;
-    letter-spacing: 1px;
-    display: block;
-    margin-block-start: 0.75em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-family: 'hauoraregular' ,sans-serif;
-}
-
-.student {
-    font-size: 0.8vw;
-    width: 11.5vw;
-    color: #918f8f;
-    margin-top: -0.5vw;
-}

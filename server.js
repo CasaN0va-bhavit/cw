@@ -128,6 +128,10 @@ const upload = multer({
 
 })
 
+app.get('/assign', (req, res) => {
+    res.render('assign.ejs')   
+})
+
 app.post('/uploadFile', upload.single('myFile'), (req, res, next) => {
     const file = req.file;
     if (!file) {
