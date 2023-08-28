@@ -11,37 +11,23 @@
         <button type="submit">Submit</button>
     </form>
 
-    <form action="/uploadFile" enctype="multipart/form-data" method="POST">
-        <input type="file" name="myFile" />            
-        <input type="submit" value="upload file" />
-    </form>
-    <form action="/uploadMultiple" enctype="multipart/form-data" method="POST">
-        <input type="file" name="myFiles" multiple>        
-        <input type="submit" value="upload files">
-    </form>            
-
-    <form action="/uploadPhoto" enctype="multipart/form-data" method="POST">
-        <input type="file" name="myImage" accept="image/*">
-        <input type="submit" value="upload photo">    
-    </form>
+    <% if (locals.fileLink != null) { %>
+        <div style="margin-bottom: 1rem;">
+          Your file is uploaded
+          <a href="<%= locals.fileLink %>"><%= locals.fileLink %></a>
+        </div>
+      <% } %>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">File:</label>
+        <input type="file" id="file" name="file" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+        <button style="grid-column: span 2;" type="submit">Share</button>
+      </form>
 
     <a href="/login">
         easter-egg
     </a>
-
-    <div>
-        <button id="clickButton1">Click Me 1</button>
-        <p>Click count: <span id="clickCount1">0</span></p>
-
-        <button id="clickButton2">Click Me 2</button>
-        <p>Click count: <span id="clickCount2">0</span></p>
-
-        <button id="clickButton3">Click Me 3</button>
-        <p>Click count: <span id="clickCount3">0</span></p>
-    </div>
-
-
-
         <% for (var i = 0; i < details.length; i ++) { %>
             <p><%= details[i].name %>:</p>
             <p class="messages"><%= details[i].message %></p>

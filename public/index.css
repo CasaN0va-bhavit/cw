@@ -1,0 +1,177 @@
+body{
+    width:100%;
+    height: 100vh;
+    background: url("https://cdn.discordapp.com/attachments/1080157954570993664/1145400179839737897/image.png");
+    /* mix-blend-mode: multiply; */
+    background-size: cover;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    /* background: #131314; */
+    /* opacity: 0.6; */
+    color: #fff;
+}
+
+@font-face {
+    font-family: 'hauoraregular';
+    src: url('hauora_sans/fonts/otf/Hauora-Regular.otf') format('otf');
+        font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'brandberegular';
+    src: url('brandbe/brandbe/Brandbe Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.background {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(19, 19, 20, 0.96);
+    /* z-index: -10; */
+    /* margin-top: -vh; */
+    position: absolute;
+    top: 0;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.uploaded {
+    font-family: 'brandberegular', sans-serif;
+    font-size: 5.303vw;
+    margin: 0;
+    margin-top: 7vh;
+    height: f;
+    align-self: center;
+}
+
+.item2 {
+    align-self: center;
+    justify-self: center;
+}
+
+.item3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 3em 7em;
+    padding-left: 0 !important;
+}
+
+
+.menu-text {
+    font-family: 'hauoraregular', sans-serif ;
+    font-size: 1.616vw;
+}
+
+.line-container {
+    padding: 0 2em;
+}
+
+.item1 {
+    display: flex;
+    align-items: center;
+    margin-left: 5em;
+}
+
+.circle {
+    background-color: #fff;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    /* padding: 0.25em; */
+    margin: 0.25em;
+}
+
+.top, .bottom {
+    display: flex;
+    flex-direction: row;
+    /* margin: 0.25em;   */
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+}
+
+.agent-name{
+    width: 450px;
+    height: 320px;
+    flex-shrink: 0;
+    margin-left: 190px;
+    border-radius: 20px;
+    background: rgba(119, 119, 119, 0.11);
+    backdrop-filter: blur(15px);
+}
+
+.agent-image{
+    margin-top: 64px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-self: center;
+    justify-content: left;
+}
+
+.agent-text{
+    color: #FFF;
+    font-family: 'brandberegular', sans-serif;
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    display: flex;
+    align-self: center;
+    
+}
+
+.other-agents{
+    width: 450px;
+    height: 110px;
+    flex-shrink: 0;
+    margin-left: 190px;
+    margin-top: 20px;
+    border-radius: 20px;
+    background: rgba(119, 119, 119, 0.11);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: row;
+}
+
+.other-image{
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    margin-top: 15px;
+    margin-left: 20px;
+    border-radius: 80px;
+    /* background: url('https://cdn.discordapp.com/attachments/1080157954570993664/1145769579008774284/image.png'), lightgray 50% / cover no-repeat; */
+}
+
+.other-name{
+    display: flex;
+    flex-direction: column;
+}
+
+.other-role{
+    color: #E82D2D;
+    font-family: 'hauoraregular', sans-serif ;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

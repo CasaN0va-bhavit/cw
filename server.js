@@ -12,8 +12,6 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 var verified = false;
-const route = require('express').Router();
-
 
 var validator = require("node-email-validation");
 
@@ -28,6 +26,7 @@ mongoose.connect("mongodb+srv://bhavitgrover:c7Yxq8IEGeaZSYh7@login.ly7rioo.mong
 
 const User = require('./models/Schema');
 const Chat = require('./models/ChatSchema');
+const File = require('./models/FileSchema');
 
 const initializePassport = require("./passport");
 initializePassport(
@@ -38,7 +37,7 @@ initializePassport(
 
 
 const app = express();
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.set("view-engine", "ejs")
 app.set('views', 'views')
 app.use(cookieParser())
@@ -128,26 +127,21 @@ const upload = multer({
 
 })
 
-app.get('/assign', (req, res) => {
-    res.render('assign.ejs')   
-})
+app.post('/uploadmultiple', upload.array('files', 10), (req, res, next) => {
+    const files = req.files;
 
-app.post('/uploadFile', upload.single('myFile'), (req, res, next) => {
-    const file = req.file;
-    if (!file) {
-        const error = new Error('please upload a file');
+    if (!files) {
+        const error = new Error('Please choose files');
         error.httpStatusCode = 400;
         return next(error);
-
     }
 
     let imgArray = files.map((file) => {
         let img = fs.readFileSync(file.path);
         return encode_image = img.toString('base64');
-
     })
     
-    let result = imgArray.map(async (src, index, images) => {
+    let result = imgArray.map((src, index) => {
 
         let finalImg = {
             filename: files[index].originalname,
@@ -156,20 +150,20 @@ app.post('/uploadFile', upload.single('myFile'), (req, res, next) => {
         }
         let newUpload = new File(finalImg);
 
-        try {
-            await newUpload
-                .save();
-            return { msg: `${files[index].originalname} Uploaded Successfully...!` };
-            res.redirect('/index');
-        } catch (err) {
-            if (err) {
-                if (err.name === 'MongoError' && error.code === 11000) {
-                    return Promise.reject({ error: `Duplicate ${files[index].originalname}. File Already exists...!` });
+        return newUpload
+            .save()
+            .then(() => {
+                return{ msg:`${files[index].originalname} Uploaded Successfully...!`}
+            })
+            .catch((err) => {
+                if(error){
+                    if(error.name === 'MongoError' && error.code === 11000){
+                        return Promise.reject({error:`Duplicate ${files[index].originalname}. File Already exists...!`})
+                    }
+                    return Promise.reject({error: error.message || `Cannot Upload ${files[index].originalname}`})
                 }
-                return Promise.reject({ error: err.message || `Cannot Upload ${files[index].originalname}` });
-            }
-        }
-    })   
+            })
+    })
     Promise.all(result)
         .then((msg) => {
             res.json(msg);
@@ -179,37 +173,75 @@ app.post('/uploadFile', upload.single('myFile'), (req, res, next) => {
         })
 });
 
-app.get('/getfiles/:id', async(req,res) =>{
-    const file = await File.find(req.params.id);
-    res.send(file);
-});
-app.post('/uploadmultiple', upload.array('myFiles', 10), (req, res, next) => {
-    const files = req.files;
-    if (!files) {
-        const error = new Error('please upload a file');
-        error.httpStatusCode = 400;
-        return next(error);
+// app.get('', (req, res) => {
+//     File.find({})
+//     .then((data, err)=>{
+//         if(err){
+//             console.log(err);
+//         }
+//         res.render('imagepage',{items: data})
+//     })
+// });
+// app.get('/files/:id', async (req, res) => {
+//     try {
+//       const file = await File.find(req.params.id);
+  
+//       if (!file) {
+//         return res.status(404).send('File not found');
+//       }
+//       // Determine the content type based on your data or file type detection logic
+//     const contentType = 'image/png'; // Default to binary data
 
-    }
-    res.send(files);
-});
-app.post('/uploadphoto', upload.single('myImage'), (req, res, next) => {
-    var img = fs.readFileSync(req.file.path);
-    var encode_image = img.toString('base64');
-    var finalImg = {
-        contentType: req.file.mimetype,
-        path: req.file.path,
-        image: new Buffer(encode_image, 'base64')
-    }
-    db.collection('image').insertOne(finalImg, (err, result) => {
-        console.log(result);
-        if (err) return console.log(err);
-        console.log('saved to database');
-        res.contentType(finalImg.contentType);
-        res.send(finalImg.image);
-    })
+//     // Set appropriate content type for the response
+//     res.contentType(contentType);
 
-})
+//     // Decode base64 to binary
+//     const fileBuffer = Buffer.from(file.data, 'base64');
+
+//     // Serve the file
+//     res.send(fileBuffer);
+//     } catch (error) {
+//       console.error(error);
+//       console.log("L")
+//       res.status(500).send('Server Error');
+//     }
+//   });
+
+app.post("/upload", upload.single("file"), async (req, res) => {    
+    const fileData = {
+      path: req.file.path,
+      originalName: req.file.originalname,
+    }
+    if (req.body.password != null && req.body.password !== "") {
+      fileData.password = await bcrypt.hash(req.body.password, 10)
+    }
+  
+    const file = await File.create(fileData)
+  
+    return res.render("upload.ejs", { fileLink: `${req.headers.origin}/file/${file.id}` })
+  })
+  
+  app.route("/file/:id").get(handleDownload).post(handleDownload)
+  
+  async function handleDownload(req, res) {
+    const file = await File.findById(req.params.id)
+  
+    if (file.password != null) {
+      if (req.body.password == null) {
+        res.render("password.ejs")
+        return
+      }
+  
+      if (!(await bcrypt.compare(req.body.password, file.password))) {
+        res.render("password.ejs", { error: true })
+        return
+      }
+    }
+  
+    await file.save()
+  
+    res.download(file.path, file.originalName)
+  }
 
 app.post("/submit", (req, res) => {
     const data = req.body; 
@@ -228,6 +260,11 @@ app.post("/submit", (req, res) => {
 
 app.get("/verify", (req,res) => {
     res.render("verify.ejs");
+
+});
+
+app.get("/123", (req,res) => {
+    res.render("test.ejs");
 
 });
 
@@ -264,6 +301,26 @@ app.get("/index", async (req,res) => {
 app.get("/login", checkNotAuthenticated, (req,res) => {
     res.render("login.ejs")
 });
+
+app.get("/upload", async (req,res) => {
+    const messages = await Chat.find();
+    const details = messages
+        .map((message) => {
+            try {
+                return {
+                    "name": message.name,
+                    "message": message.message,
+                    "realMessage": message.realMessage
+                };
+            } catch (error) {
+                return null;
+            }
+        })
+        .filter((detail) => detail !== null);
+
+    console.log(details);
+    return res.render("index.ejs", { details });
+})
 
 app.post("/login", (req, res, next) => {
     loginUser(req, res, next)
