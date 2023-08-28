@@ -15,8 +15,8 @@ body{
 
 @font-face {
     font-family: 'hauoraregular';
-    src: url('../hauora_sans/fonts/web/Hauora-Regular.woff2') format('woff2'),
-         url('../hauora_sans/fonts/web/Hauora-Regular.woff') format('woff'),;
+    src: url('hauora_sans/fonts/web/Hauora-Regular.woff2') format('woff2'),
+         url('hauora_sans/fonts/web/Hauora-Regular.woff') format('woff'),;
          font-weight: normal;
     font-style: normal;
 
@@ -24,7 +24,7 @@ body{
 
 @font-face {
     font-family: 'brandberegular';
-    src: url('../brandbe/brandbe/Brandbe Regular.otf');
+    src: url('brandbe/brandbe/Brandbe Regular.otf');
     font-weight: normal;
     font-style: normal;
 }
@@ -98,7 +98,7 @@ body{
 }
 
 .title {
-    font-family: 'Teko';
+    font-family: 'brandberegular', sans-serif;
     font-size: 5.303vw;
     margin: 0;
     margin-top: 7vh;
@@ -137,7 +137,7 @@ body{
 
 .name {
     color: rgba(255, 255, 255, 0.85);
-    font-family: Hauora;
+    font-family: 'hauoraregular', sans-serif;
     font-size: 28px;
     font-style: normal;
     font-weight: 700;
@@ -147,7 +147,7 @@ body{
 
 .status {
     color: rgba(255, 255, 255, 0.85);
-    font-family: Hauora;
+    font-family: 'hauoraregular', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 300;
@@ -169,7 +169,7 @@ body{
 .assign {
     color: #F00;
     text-align: right;
-    font-family: Hauora;
+    font-family: 'hauoraregular', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
