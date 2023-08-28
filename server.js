@@ -93,8 +93,9 @@ app.post("/post-message", async (req,res) => {
                 decryptedMessage = decryptedMessage + " " + words[i]
             }
         }
+        // YAHA PAR THEEK KARNA H
         const newMessage = new Chat({
-            name: requiredUser.name,
+            name: "bha",
             message: decryptedMessage,
             realMessage: message
         })
@@ -188,6 +189,26 @@ app.post("/profile", upload.single('img'), (req, res) =>{
     console.log(req.body);
     return res.redirect("/")
 });
+
+app.get("/index", async (req,res) => {
+    const messages = await Chat.find();
+    const details = messages
+        .map((message) => {
+            try {
+                return {
+                    "name": message.name,
+                    "message": message.message,
+                    "realMessage": message.realMessage
+                };
+            } catch (error) {
+                return null;
+            }
+        })
+        .filter((detail) => detail !== null);
+
+    console.log(details);
+    return res.render("index.ejs", { details });
+})
 
 app.get("/login", checkNotAuthenticated, (req,res) => {
     res.render("login.ejs")
