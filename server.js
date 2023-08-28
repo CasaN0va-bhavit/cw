@@ -107,6 +107,10 @@ app.post("/post-message", async (req,res) => {
     }
 });
 
+app.get("/missions", (req, res) => {
+    res.render("mission.ejs")
+})
+
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, 'uploads')
