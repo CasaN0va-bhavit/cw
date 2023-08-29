@@ -1,12 +1,12 @@
 body{
     width:100%;
-    height: 100vh;
-    background: url("https://cdn.discordapp.com/attachments/1080157954570993664/1145400179839737897/image.png");
+    background: url("https://cdn.discordapp.com/attachments/1080157954570993664/1145736114439721112/image.png");
     /* mix-blend-mode: multiply; */
     background-size: cover;
     z-index: 2;
     margin: 0;
     padding: 0;
+    background-repeat: no-repeat;
     /* background: #131314; */
     /* opacity: 0.6; */
     color: #fff;
@@ -14,8 +14,8 @@ body{
 
 @font-face {
     font-family: 'hauoraregular';
-    src: url('hauora_sans/fonts/otf/Hauora-Regular.otf') format('otf');
-        font-weight: normal;
+    src: url('hauora_sans/fonts/otf/Hauora-Regular.otf') format('opentype');
+         font-weight: normal;
     font-style: normal;
 
 }
@@ -32,7 +32,7 @@ body{
     display: flex;
     width: 100%;
     height: 100vh;
-    background-color: rgba(19, 19, 20, 0.96);
+    /* background-color: #1B1B1B; */
     /* z-index: -10; */
     /* margin-top: -vh; */
     position: absolute;
@@ -174,4 +174,132 @@ body{
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+.messageGrp {
+    /* border: 1px solid black; */
+    padding: 5px 0px 5px 5px ;
+    height: 700px;
+    overflow: auto;
+    margin-left: 400px;
+    margin-right: 10px;
+    backdrop-filter: blur(15px);
+    color: #343434;
+    width: 925px;
+    height: 705px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    /* border: 2px solid #ccc; */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.message1 {
+    max-height: 400px;
+    max-width: 350px;
+    font-family: 'hauoraregular', sans-serif ;
+    padding : 8px;
+    /* border: 2px solid #ccc; */
+    border-radius : 0px 30px 30px 30px;
+    color: white;
+    backdrop-filter: blur(15px);
+    background-color: #343434;
+    margin-left: 80px;
+    
+}
+.chatGrp{
+    display: flex;
+    flex-direction: row;
+
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    font-family: 'hauoraregular', sans-serif ;
+    justify-content: center;
+    margin-left: 30px;
+}
+.input-mess{
+    border-radius: 20px;
+    height: 30px;
+    width: 335px;
+    background: #1B1B1B;
+    padding: 8px;
+    margin-left: 20px;
+    /* align-self: center; */
+    font-family: 'hauoraregular', sans-serif ;
+    color: #ccc;
+}
+
+::-webkit-scrollbar {
+width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+background: #131314;
+}
+.submit{
+    margin: 4px 2px;
+    border-radius: 20px;
+    background-color: #E82D2D;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;    
+    font-family: 'hauoraregular', sans-serif ;
+}
+.inputsubmit{
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+.file {
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 6px 12px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #E82D2D;
+    color: white;
+    cursor: pointer;    
+    font-family: 'hauoraregular', sans-serif ;
+}
+.password{
+    margin-top: 20px;
+}   
+#password{
+    border-radius: 20px;
+    height: 30px;
+    width: 200px;
+    background: #1B1B1B;
+    padding: 8px;
+    margin-left: 3px;
+    /* align-self: center; */
+    font-family: 'hauoraregular', sans-serif ;
+    color: #ccc;
+}
+.uplButton{
+    margin: 4px 2px;
+    border-radius: 20px;
+    background-color: #E82D2D;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;    
+    font-family: 'hauoraregular', sans-serif ;
+    margin-top: 20px;
+    /* margin-left: 164px; */
+}
+
+.upload{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-left: 20px;
+    margin-top: 20px;
 }

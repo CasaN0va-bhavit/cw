@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-// c7Yxq8IEGeaZSYh7
-// LLKr6nVahSddfruG
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -16,6 +14,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    role:{
+        type:String,
+        required:true
+    }
 })
 
 

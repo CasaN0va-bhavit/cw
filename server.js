@@ -77,6 +77,7 @@ app.get("/", async (req, res) => {
 });
 
 
+
 app.post("/post-message", async (req,res) => {
     const requiredUser = await User.findOne({email: req.cookies["username"]})
     try {
@@ -96,13 +97,13 @@ app.post("/post-message", async (req,res) => {
         }
         // YAHA PAR THEEK KARNA H
         const newMessage = new Chat({
-            name: "bha",
+            name: requiredUser.name,
             message: decryptedMessage,
             realMessage: message
         })
 
         await newMessage.save()
-        res.redirect("/")
+        res.redirect("/index")
     } catch (error) {
         console.log(error)
     }
@@ -126,6 +127,28 @@ const upload = multer({
     storage: storage
 
 })
+
+app.get('/assignAgents',isAdmin,  async (req,res,next) => {
+    res.render('mission.ejs');
+})
+
+app.get('/admin',isAdmin,  async (req,res,next) => {
+    res.render('assign.ejs');
+})
+
+app.get('/missionAssigned',isAdmin,  async (req,res,next) => {
+    res.render('missionInfo.ejs');
+})
+
+function isAdmin(req, res, next) {
+    if (req.user && req.user.role === 'admin') {
+      return next();
+    } else {
+      return res.status(403).json({ message: 'Permission denied' });
+    }
+}
+
+  
 
 app.post('/uploadmultiple', upload.array('files', 10), (req, res, next) => {
     const files = req.files;
@@ -268,7 +291,7 @@ app.get("/123", (req,res) => {
 
 });
 
-app.get("/portal",checkNotVerified, (req,res) => {
+app.get("/portal",checkNotVerified,checkAuthenticated, (req,res) => {
     res.render("portal.ejs");
 });
 
@@ -278,7 +301,7 @@ app.post("/profile", upload.single('img'), (req, res) =>{
     return res.redirect("/")
 });
 
-app.get("/index", async (req,res) => {
+app.get("/index",checkAuthenticated, async (req,res) => {
     const messages = await Chat.find();
     const details = messages
         .map((message) => {
@@ -409,6 +432,7 @@ function checkNotVerified(req, res, next) {
 
     next()
 }
+
 
 
 const PORT = process.env.PORT || 3000;
