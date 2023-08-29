@@ -93,6 +93,10 @@ body{
     font-size: 1.616vw;
 }
 
+#home{
+    opacity: 0;
+}
+
 .container {
     /* position: absolute;
     top: 0; */
@@ -243,4 +247,19 @@ body{
 .active {
     display: flex !important;
     animation: slide 2s linear 0 1 0;
+}
+.amenu{
+    color: #000;
+    text-decoration: none;
+}
+a:hover{
+    color:#000; 
+    text-decoration:none; 
+    cursor:pointer; 
+}
+.ahome{
+    text-decoration: none;
+}
+.ahome:hover{
+    text-decoration: none;
 }

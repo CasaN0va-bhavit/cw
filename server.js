@@ -349,10 +349,13 @@ app.get('/agents', async (req,res) => {
 })
 
 app.get("/index",checkAuthenticated, async (req,res) => {
-    const messages = await Chat.find();
+    const messages = await Chat.find();  
     const details = messages
         .map((message) => {
             try {
+                if(messages.name == req.user.name){
+                    return(console.log("sgvdffinsov"))
+                }
                 return {
                     "name": message.name,
                     "message": message.message,
@@ -366,6 +369,7 @@ app.get("/index",checkAuthenticated, async (req,res) => {
 
     console.log(details);
     return res.render("index.ejs", { details });
+    
 })
 
 app.get("/login", checkNotAuthenticated, (req,res) => {

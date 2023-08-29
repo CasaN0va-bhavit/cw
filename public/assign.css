@@ -261,6 +261,7 @@ body{
     padding-right: 0vw !important;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .bottom-div-right svg {

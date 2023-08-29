@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="verify.css">
 </head>
 <body>
-    <div>
-        <button id="clickButton1">Click Me 1</button>
-        <p>Click count: <span id="clickCount1">0</span></p>
-
-        <button id="clickButton2">Click Me 2</button>
-        <p>Click count: <span id="clickCount2">0</span></p>
-
-        <button id="clickButton3">Click Me 3</button>
-        <p>Click count: <span id="clickCount3">0</span></p>
+    <div class="wo">
+        <div class="buttonGrp">
+            <button class="button"  id="clickButton1">Click Me</button>
+            <p class="butText">Click count: <span id="clickCount1">0</span></p>
+            <br>
+            <button class="button" id="clickButton2">Click Me</button>
+            <p class="butText">Click count: <span id="clickCount2">0</span></p>
+            <br>
+            <button class="button" id="clickButton3">Click Me</button>
+            <p class="butText">Click count: <span id="clickCount3">0</span></p>
+        </div>
     </div>
     <script>
         var button1 = document.getElementById("clickButton1");
