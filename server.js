@@ -23,7 +23,6 @@ mongoose.connect("mongodb+srv://bhavitgrover:c7Yxq8IEGeaZSYh7@login.ly7rioo.mong
     console.log("failed you loser");
 })
 
-
 const User = require('./models/Schema');
 const Chat = require('./models/ChatSchema');
 const File = require('./models/FileSchema');
@@ -76,7 +75,9 @@ app.get("/", async (req, res) => {
     return res.render("landing.ejs", { details });
 });
 
-
+app.get("/smth", (req, res) => {
+    res.render("smth.ejs")
+})
 
 app.post("/post-message", async (req,res) => {
     const requiredUser = await User.findOne({email: req.cookies["username"]})
@@ -109,10 +110,6 @@ app.post("/post-message", async (req,res) => {
     }
 });
 
-app.get("/missions", (req, res) => {
-    res.render("mission.ejs")
-})
-
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, 'uploads')
@@ -129,7 +126,30 @@ const upload = multer({
 })
 
 app.get('/assignAgents',isAdmin,  async (req,res,next) => {
-    res.render('mission.ejs');
+    var users = await User.find();
+    users = JSON.parse(JSON.stringify(users))
+    // const agents = users.map((agent) => {
+    //     if(agent.name.includes("Agent")) {
+    //         console.log(agent);
+    //     }
+    // })
+    const agents = users
+        .map((user) => {
+            try {
+                if (user.name.includes("Agent")) {
+                    return {
+                        "name": user.name,
+                        "mission": user.mission,
+                    };
+                }
+            } catch (error) {
+                return null;
+            }
+        })
+        .filter((agent) => agent !== null);
+
+    console.log(agents);
+    return res.render("mission.ejs", { agents });
 })
 
 app.get('/admin',isAdmin,  async (req,res,next) => {
@@ -300,6 +320,33 @@ app.post("/profile", upload.single('img'), (req, res) =>{
     console.log(req.body);
     return res.redirect("/")
 });
+
+app.get('/agents', async (req,res) => {
+    var users = await User.find();
+    users = JSON.parse(JSON.stringify(users))
+    // const agents = users.map((agent) => {
+    //     if(agent.name.includes("Agent")) {
+    //         console.log(agent);
+    //     }
+    // })
+    const agents = users
+        .map((user) => {
+            try {
+                if (user.name.includes("Agent")) {
+                    return {
+                        "name": user.name,
+                        "mission": user.mission,
+                    };
+                }
+            } catch (error) {
+                return null;
+            }
+        })
+        .filter((agent) => agent !== null);
+
+    console.log(agents);
+    return res.render("agents.ejs", { agents });
+})
 
 app.get("/index",checkAuthenticated, async (req,res) => {
     const messages = await Chat.find();

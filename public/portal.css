@@ -1,4 +1,5 @@
 body{
+    /* overflow: hidden; */
     width:100%;
     height: 100vh;
     background: url("https://cdn.discordapp.com/attachments/1080157954570993664/1145736114439721112/image.png");
@@ -149,6 +150,7 @@ body{
 }
 .menu-text {
     font-family: 'hauoraregular', sans-serif;
+    cursor: pointer;
     /* font-family: Hauora; */
 }
 
@@ -177,3 +179,68 @@ body{
     margin-bottom: 1vw;
 }
 
+.line-container-idk {
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    height: fit-content !important;
+}
+
+.center {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    cursor: pointer;
+    font-family: 'brandberegular', sans-serif;
+    font-size: 5vw;
+    margin: 0;
+    margin-bottom: 2vw;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.heading::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px; /* Adjust the thickness of the underline */
+    background-color: red; /* Adjust the underline color */
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.heading:hover::before {
+    width: 100%;
+}
+
+.menu-container {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    color: #000;
+}
+
+.special-text {
+    color: red;
+}
+
+.active {
+    display: flex !important;
+    animation: slide 2s linear 0 1 0;
+}

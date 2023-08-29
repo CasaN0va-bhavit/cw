@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agents</title>
+</head>
+<body>
+    <% for (var i = 0; i < agents.length; i ++) { %>
+        <% if (agents[i] !=  null || agents[i] != undefined) { %>
+            <div class="message1">
+                <p><%= agents[i].name %></p>
+                <p class="realMessage"><%= agents[i].mission %></p>
+            </div>
+        <% } %> 
+    <% } %>
+</body>
+</html>

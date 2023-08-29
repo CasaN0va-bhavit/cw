@@ -107,19 +107,34 @@ body{
 }
 
 .goback{
-    position: relative;
-    border-radius: 25.05px;
-    background-color: #ff0000;
-    backdrop-filter: blur(37.58px);
-    width: 10%;
-    height: 60px;
+    align-self: center;
+    margin-top: 2vw;
+    width: 20%;
+    height: 2.343vw;
+    flex-shrink: 0;
+    border-radius: 25.054px;
+    background: #F00;
+    backdrop-filter: blur(18.790149688720703px);
     display: flex;
     flex-direction: row;
-    gap: 10px;
-    margin-top: 40px;
-    margin-left: 830px;
-    justify-content: center;
-    font-family: 'brandberegular', sans-serif;
-    font-size: 40px;
-    cursor: pointer;
+    padding: 2vw 3vw;
+    padding-right: 0vw !important;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1vw;
+}
+
+.goback svg {
+    margin-right: 2vw;
+}
+
+.top-div-heading-special {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.771vw;
+    font-family: 'hauoraregular', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    font-weight: 700;
+    margin: 0;
 }

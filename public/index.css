@@ -10,6 +10,7 @@ body{
     /* background: #131314; */
     /* opacity: 0.6; */
     color: #fff;
+    overflow-x: hidden;
 }
 
 @font-face {
@@ -101,205 +102,23 @@ body{
 
 .container {
     display: flex;
-    height: 100vh;
-    align-items: center;
-}
-
-.agent-name{
-    width: 450px;
-    height: 320px;
-    flex-shrink: 0;
-    margin-left: 190px;
-    border-radius: 20px;
-    background: rgba(119, 119, 119, 0.11);
-    backdrop-filter: blur(15px);
-}
-
-.agent-image{
-    margin-top: 64px;
-    margin-left: 30px;
-    display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-self: center;
-    justify-content: left;
+    width: 100%;
+    flex-grow: 1;
+    padding: 0 3vw;
 }
 
-.agent-text{
-    color: #FFF;
-    font-family: 'brandberegular', sans-serif;
-    font-size: 65px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-transform: capitalize;
+.left {
     display: flex;
-    align-self: center;
-    
+    flex-grow: 1;
+    width: 25%;
+    height: 50vh;
 }
 
-.other-agents{
-    width: 450px;
-    height: 110px;
-    flex-shrink: 0;
-    margin-left: 190px;
-    margin-top: 20px;
-    border-radius: 20px;
-    background: rgba(119, 119, 119, 0.11);
-    backdrop-filter: blur(15px);
+.right {
     display: flex;
-    flex-direction: row;
+    flex-grow: 1;
+    height: 50vh;
+    width: 75%;
 }
 
-.other-image{
-    width: 80px;
-    height: 80px;
-    flex-shrink: 0;
-    margin-top: 15px;
-    margin-left: 20px;
-    border-radius: 80px;
-    /* background: url('https://cdn.discordapp.com/attachments/1080157954570993664/1145769579008774284/image.png'), lightgray 50% / cover no-repeat; */
-}
-
-.other-name{
-    display: flex;
-    flex-direction: column;
-}
-
-.other-role{
-    color: #E82D2D;
-    font-family: 'hauoraregular', sans-serif ;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.messageGrp {
-    /* border: 1px solid black; */
-    padding: 5px 0px 5px 5px ;
-    height: 700px;
-    overflow: auto;
-    margin-left: 400px;
-    margin-right: 10px;
-    backdrop-filter: blur(15px);
-    color: #343434;
-    width: 925px;
-    height: 705px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    /* border: 2px solid #ccc; */
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-.message1 {
-    max-height: 400px;
-    max-width: 350px;
-    font-family: 'hauoraregular', sans-serif ;
-    padding : 8px;
-    /* border: 2px solid #ccc; */
-    border-radius : 0px 30px 30px 30px;
-    color: white;
-    backdrop-filter: blur(15px);
-    background-color: #343434;
-    margin-left: 80px;
-    
-}
-.chatGrp{
-    display: flex;
-    flex-direction: row;
-
-}
-.form{
-    display: flex;
-    flex-direction: column;
-    font-family: 'hauoraregular', sans-serif ;
-    justify-content: center;
-    margin-left: 30px;
-}
-.input-mess{
-    border-radius: 20px;
-    height: 30px;
-    width: 335px;
-    background: #1B1B1B;
-    padding: 8px;
-    margin-left: 20px;
-    /* align-self: center; */
-    font-family: 'hauoraregular', sans-serif ;
-    color: #ccc;
-}
-
-::-webkit-scrollbar {
-width: 2px;
-}
-
-::-webkit-scrollbar-thumb {
-background: #131314;
-}
-.submit{
-    margin: 4px 2px;
-    border-radius: 20px;
-    background-color: #E82D2D;
-    padding: 10px 20px;
-    border: none;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;    
-    font-family: 'hauoraregular', sans-serif ;
-}
-.inputsubmit{
-    justify-content: center;
-    align-items: center;
-}
-
-input[type="file"] {
-    display: none;
-}
-.file {
-    border-radius: 20px;
-    margin-top: 20px;
-    padding: 6px 12px;
-    display: inline-block;
-    cursor: pointer;
-    background-color: #E82D2D;
-    color: white;
-    cursor: pointer;    
-    font-family: 'hauoraregular', sans-serif ;
-}
-.password{
-    margin-top: 20px;
-}   
-#password{
-    border-radius: 20px;
-    height: 30px;
-    width: 200px;
-    background: #1B1B1B;
-    padding: 8px;
-    margin-left: 3px;
-    /* align-self: center; */
-    font-family: 'hauoraregular', sans-serif ;
-    color: #ccc;
-}
-.uplButton{
-    margin: 4px 2px;
-    border-radius: 20px;
-    background-color: #E82D2D;
-    padding: 10px 20px;
-    border: none;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;    
-    font-family: 'hauoraregular', sans-serif ;
-    margin-top: 20px;
-    /* margin-left: 164px; */
-}
-
-.upload{
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    margin-left: 20px;
-    margin-top: 20px;
-}
