@@ -445,7 +445,6 @@ app.post("/signup", async (req, res) => {
     }
 })
 
-
 app.get("/dashboard", (req,res) => {
     res.render("dashboard.ejs")
 })

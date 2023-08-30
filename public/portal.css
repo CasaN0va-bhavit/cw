@@ -1,7 +1,7 @@
 body{
-    /* overflow: hidden; */
+    overflow: hidden;
     width:100%;
-    height: auto;
+    height: 100vh;
     background: url("https://cdn.discordapp.com/attachments/1080157954570993664/1145736114439721112/image.png");
     /* mix-blend-mode: multiply; */
     background-size: cover;
@@ -12,6 +12,7 @@ body{
     /* background: #131314; */
     /* opacity: 0.6; */
     color: #fff;
+    overflow: hidden;
 }
 
 @font-face {
@@ -33,7 +34,7 @@ body{
     flex-direction: column;
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 120vh;
     background-color: rgba(19, 19, 20, 0.94);
     /* z-index: -10; */
     /* margin-top: -vh; */
