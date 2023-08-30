@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="portal.css">
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="background">
@@ -24,6 +25,26 @@
               </div>
               <p class="menu-text" id="menu">MENU</p>
             </div>
+            <div class="menu-container" id="menu-container">
+              <div class="line-container-idk">
+                <div class="line-container">
+                  <div class="top">
+                    <div class="circle" style="background: #000;"></div>
+                    <div class="circle" style="background: #000;"></div>
+                  </div>
+                  <div class="bottom">
+                    <div class="circle" style="background: #000;"></div>
+                    <div class="circle" style="background: #000;"></div>
+                  </div>
+                </div>
+                <p class="menu-text" id="menu-close">CLOSE</p>
+              </div>
+              <div class="center">
+                <a href="/index" class="amenu"><p class="heading"><span class="special-text">1.</span> CHAT</p></a> 
+                <a href="/admin" class="amenu"><p class="heading"><span class="special-text">2.</span> ADD A MISSION</p></a> 
+                <a href="/logout" class="amenu"><p class="heading"><span class="special-text">3.</span> LOGOUT</p></a> 
+              </div>
+            </div>
             <div class="item2">
               <svg width="51" height="47" viewBox="0 0 51 47" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M23.2014 46.7178C22.0802 46.7178 21.109 45.9403 20.8637 44.8462L19.9719 40.8692C19.6362 39.3718 20.7751 37.9493 22.3096 37.9493H27.2458C36.3378 37.9493 40.8794 33.0978 40.8794 23.323C40.8794 13.5841 36.3378 8.76858 27.2458 8.76858H15.5941C14.062 8.76858 12.9235 10.187 13.2551 11.6829L15.3623 21.1886C15.4709 21.6785 15.4211 22.1667 15.2469 22.5996C14.1871 21.1039 12.4211 20.1246 10.4217 20.1246C7.73406 20.1246 5.46834 21.8941 4.77229 24.3086C4.64576 24.0933 4.55098 23.8543 4.49569 23.5967L0.0542398 2.89843C-0.265827 1.40685 0.871163 0 2.3967 0L27.102 0C43.2736 0 51 8.91233 51 23.323C51 37.7696 43.2736 46.7178 27.102 46.7178H23.2014Z" fill="#FF0000"/>
@@ -32,7 +53,7 @@
             </div>
             <div class="item3">
               
-              <p class="menu-text" id="home">HOME</p>
+              <a href="/portal" style="text-decoration: none; color: white;" class="menu-text" id="home">PORTAL</a>
               <svg id="home"width="32" style="margin-left: 2em;" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.2096 27.695V23.6061C12.2096 22.566 13.0575 21.7209 14.108 21.714H17.9561C19.0116 21.714 19.8673 22.5611 19.8673 23.6061V27.7077C19.8671 28.5908 20.579 29.3125 21.4707 29.3332H24.0361C26.5935 29.3332 28.6666 27.2807 28.6666 24.7489V13.117C28.653 12.1209 28.1806 11.1856 27.3839 10.5772L18.6103 3.58024C17.0732 2.36193 14.8883 2.36193 13.3512 3.58024L4.61601 10.5899C3.81632 11.1959 3.34316 12.1327 3.33331 13.1296V24.7489C3.33331 27.2807 5.40648 29.3332 7.96386 29.3332H10.5293C11.4431 29.3332 12.1839 28.5998 12.1839 27.695" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>          
@@ -58,9 +79,10 @@
               <a href="/logout" class="amenu"><p class="heading"><span class="special-text">3.</span> LOGOUT</p></a> 
             </div>
           </div>
-        
-            <div class="messageGrp">
-                <script>
+        <div class="container">
+
+          <div class="messageGrp">
+            <script>
                     $(function () {
                     var ChatDiv = $('messageGrp');
                     var height = ChatDiv[0].scrollHeight;
@@ -118,14 +140,6 @@
             </div>    
         </div>
 
-        
-        
-
-        <a href="/login">
-            easter-egg
-        </a>
-    </div>
-
     <script>
         function decrypt() {
             const pass = prompt("Enter the passcode to decrypt the messages:")
@@ -148,8 +162,20 @@
                 alert("Wrong password")
             }
         }
+        const menu = document.getElementById("menu");
+          const menuClose = document.getElementById("menu-close");
+          const menuContainer = document.getElementById("menu-container")
+
+          menu.addEventListener('click', function() {
+            menuContainer.classList.add("active");
+          });
+
+          menuClose.addEventListener('click', function() {
+            menuContainer.classList.remove("active");
+          });
     </script>
 
-    
+</div>
+</div>
 </body>
 </html>

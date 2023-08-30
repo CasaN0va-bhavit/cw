@@ -40,6 +40,87 @@ body{
     top: 0;
 }
 
+.line-container-idk {
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    height: fit-content !important;
+}
+
+.center {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    cursor: pointer;
+    font-family: 'brandberegular', sans-serif;
+    font-size: 5vw;
+    margin: 0;
+    margin-bottom: 2vw;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.heading::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px; /* Adjust the thickness of the underline */
+    background-color: red; /* Adjust the underline color */
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.heading:hover::before {
+    width: 100%;
+}
+
+.menu-container {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    color: #000;
+}
+
+.special-text {
+    color: red;
+}
+
+.active {
+    display: flex !important;
+    animation: slide 2s linear 0 1 0;
+}
+.amenu{
+    color: #000;
+    text-decoration: none;
+}
+a:hover{
+    color:#000; 
+    text-decoration:none; 
+    cursor:pointer; 
+}
+.ahome{
+    text-decoration: none;
+}
+.ahome:hover{
+    text-decoration: none;
+}
+
 .nav {
     display: flex;
     flex-direction: row;

@@ -448,7 +448,10 @@ app.post("/signup", async (req, res) => {
 function loginUser(req, res, next) {
     passport.authenticate('local', (err, user, info) => {
         if (err) throw err;
-        if (!user) req.flash('error', `${info.message}.`);
+        if (!user) {
+            req.flash('error', `${info.message}.`);
+            res.redirect('/login');
+        }
         else {
             req.logIn(user, (err) => {
                 if (err) throw err;

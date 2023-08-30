@@ -93,10 +93,6 @@ body{
     font-size: 1.616vw;
 }
 
-#home{
-    opacity: 0;
-}
-
 .container {
     /* position: absolute;
     top: 0; */
@@ -194,6 +190,7 @@ body{
 }
 
 .center {
+    z-index: 1000;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -229,6 +226,7 @@ body{
 }
 
 .menu-container {
+    z-index: 1000;
     display: none;
     flex-direction: column;
     text-align: center;

@@ -1,5 +1,6 @@
 body{
     width:100%;
+    height: 100vh;
     background: url("https://cdn.discordapp.com/attachments/1080157954570993664/1145736114439721112/image.png");
     /* mix-blend-mode: multiply; */
     background-size: cover;
@@ -31,12 +32,93 @@ body{
     flex-direction: column;
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 100vh !important;
     /* background-color: #1B1B1B; */
     /* z-index: -10; */
     /* margin-top: -vh; */
     position: absolute;
     top: 0;
+}
+
+.line-container-idk {
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    height: fit-content !important;
+}
+
+.center {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    cursor: pointer;
+    font-family: 'brandberegular', sans-serif;
+    font-size: 5vw;
+    margin: 0;
+    margin-bottom: 2vw;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.heading::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px; /* Adjust the thickness of the underline */
+    background-color: red; /* Adjust the underline color */
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.heading:hover::before {
+    width: 100%;
+}
+
+.menu-container {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    color: #000;
+}
+
+.special-text {
+    color: red;
+}
+
+.active {
+    display: flex !important;
+    animation: slide 2s linear 0 1 0;
+}
+.amenu{
+    color: #000;
+    text-decoration: none;
+}
+a:hover{
+    color:#000; 
+    text-decoration:none; 
+    cursor:pointer; 
+}
+.ahome{
+    text-decoration: none;
+}
+.ahome:hover{
+    text-decoration: none;
 }
 
 .nav {
@@ -181,12 +263,12 @@ body{
     padding: 5px 0px 5px 5px ;
     height: 700px;
     overflow: auto;
-    margin-left: 700px;
+    /* margin-left: 700px; */
     /* margin-right: 40px; */
     backdrop-filter: blur(15px);
     color: #343434;
-    width: 1000px;
-    height: 705px;
+    width: 75%;
+    height: 75vh;
     flex-shrink: 0;
     border-radius: 20px;
     border: 2px solid #ccc;
@@ -225,7 +307,7 @@ body{
 .chatGrp{
     display: flex;
     flex-direction: row;
-
+    height: 75vh;
 }
 .form{
     display: flex;
