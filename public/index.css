@@ -244,10 +244,10 @@ a:hover{
     /* background: url('https://cdn.discordapp.com/attachments/1080157954570993664/1145769579008774284/image.png'), lightgray 50% / cover no-repeat; */
 }
 
-.other-name{
+/* .other-name{
     display: flex;
     flex-direction: column;
-}
+} */
 
 .other-role{
     color: #E82D2D;
@@ -311,21 +311,21 @@ a:hover{
 }
 .form{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 10px;
+    max-width: 1800px;
     font-family: 'hauoraregular', sans-serif ;
-    justify-content: center;
-    align-items: center;
-    margin-left: 250px;
+    /* justify-content: center;
+    align-items: center; */
+    margin-left: 30px;
     color: #FFF;
 }
 .input-mess{
     border-radius: 20px;
     height: 30px;
-    width: 335px;
+    width: 700px;
     background: #1B1B1B;
     padding: 8px;
-    margin-left: 20px;
-    /* align-self: center; */
     font-family: 'hauoraregular', sans-serif ;
     color: #ccc;
 }
@@ -338,7 +338,7 @@ width: 2px;
 background: #131314;
 }
 .submit{
-    margin: 4px 2px;
+    /* margin: 4px 2px; */
     border-radius: 20px;
     background-color: #E82D2D;
     padding: 10px 20px;
@@ -358,18 +358,15 @@ input[type="file"] {
 }
 .file {
     border-radius: 20px;
-    margin-top: 20px;
     padding: 6px 12px;
     display: inline-block;
     cursor: pointer;
-    background-color: #E82D2D;
+    background-color: #343434;
     color: white;
     cursor: pointer;    
     font-family: 'hauoraregular', sans-serif ;
 }
-.password{
-    margin-top: 20px;
-}   
+   
 #password{
     border-radius: 20px;
     height: 30px;
@@ -380,18 +377,25 @@ input[type="file"] {
     /* align-self: center; */
     font-family: 'hauoraregular', sans-serif ;
     color: #ccc;
+    display: flex;
+    flex-direction: row;
+}
+.uploadGrp{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .uplButton{
-    margin: 4px 2px;
     border-radius: 20px;
     background-color: #E82D2D;
+    display: flex;
+    flex-direction: row;
     padding: 10px 20px;
     border: none;
     color: white;
     text-decoration: none;
     cursor: pointer;    
     font-family: 'hauoraregular', sans-serif ;
-    margin-top: 20px;
     /* margin-left: 164px; */
 }
 
@@ -399,6 +403,8 @@ input[type="file"] {
     display: flex;
     flex-direction: row;
     gap: 5px;
-    margin-left: 20px;
-    margin-top: 20px;
+}
+
+.label{
+    background-color: #ccc;
 }
