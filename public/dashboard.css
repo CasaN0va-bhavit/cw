@@ -1,7 +1,6 @@
 body{
-    /* overflow: hidden; */
     width:100%;
-    height: auto;
+    /* height: 100vh; */
     background: url("https://cdn.discordapp.com/attachments/1080157954570993664/1145736114439721112/image.png");
     /* mix-blend-mode: multiply; */
     background-size: cover;
@@ -33,13 +32,14 @@ body{
     flex-direction: column;
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: auto;
     background-color: rgba(19, 19, 20, 0.94);
-    /* z-index: -10; */
+    z-index: -100;
     /* margin-top: -vh; */
     position: absolute;
     top: 0;
 }
+
 
 .nav {
     display: flex;
@@ -61,124 +61,6 @@ body{
     padding-left: 0 !important;
 }
 
-
-.line-container {
-    padding: 0 2em;
-}
-
-.item1 {
-    display: flex;
-    align-items: center;
-    margin-left: 5em;
-}
-
-.circle {
-    background-color: #fff;
-    width: 0.5em;
-    height: 0.5em;
-    border-radius: 50%;
-    /* padding: 0.25em; */
-    margin: 0.25em;
-}
-
-.top, .bottom {
-    display: flex;
-    flex-direction: row;
-    /* margin: 0.25em;   */
-}
-
-.menu-text {
-    font-family: 'hauoraregular', sans-serif;
-    /* font-family: Hauora; */
-    font-size: 1.616vw;
-}
-
-.container {
-    /* position: absolute;
-    top: 0; */
-    width: 100%;
-    height: 81.9vh;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.main-container {
-    height: auto;
-}
-
-.h1 {
-    font-family: 'brandberegular', sans-serif;
-    font-size: 14vw;
-    margin-bottom: 2vw !important;
-    margin: 0;
-    height: 14vw;
-    font-weight: 200;
-}
-
-.h1 span {
-    height: fit-content;
-    display: inline-block;
-}
-
-.h2 {
-    font-weight: 200;
-    padding: 0;
-    font-family: 'brandberegular', sans-serif;
-    font-size: 4vw;
-    margin: 0;
-    color: #8E8E8E;
-    letter-spacing: 19.799px;
-    margin-bottom: 1vw;
-}
-
-@font-face {
-    font-family: 'hauoraregular';
-    src: url('hauora_sans/fonts/otf/Hauora-Regular.otf') format('opentype');
-         font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'brandberegular';
-    src: url('brandbe/brandbe/Brandbe Regular.otf');
-    font-weight: normal;
-    font-style: normal;
-}
-.menu-text {
-    font-family: 'hauoraregular', sans-serif;
-    cursor: pointer;
-    /* font-family: Hauora; */
-}
-
-.h1 {
-    font-family: 'brandberegular', sans-serif;
-    font-size: 14vw;
-    margin-bottom: 2vw !important;
-    margin: 0;
-    height: 14vw;
-    font-weight: 200;
-}
-
-.h1 span {
-    height: fit-content;
-    display: inline-block;
-}
-
-.h2 {
-    font-weight: 200;
-    padding: 0;
-    font-family: 'brandberegular', sans-serif;
-    font-size: 4vw;
-    margin: 0;
-    color: #8E8E8E;
-    letter-spacing: 1px;
-    margin-bottom: 1vw;
-}
-
 .line-container-idk {
     padding: 2em;
     display: flex;
@@ -190,7 +72,6 @@ body{
 }
 
 .center {
-    z-index: 1000;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -226,7 +107,6 @@ body{
 }
 
 .menu-container {
-    z-index: 1000;
     display: none;
     flex-direction: column;
     text-align: center;
@@ -260,4 +140,89 @@ a:hover{
 }
 .ahome:hover{
     text-decoration: none;
+}
+
+
+.menu-text {
+    font-size: 1.616vw;
+    font-family: 'hauoraregular', sans-serif;
+}
+
+.line-container {
+    padding: 0 2em;
+}
+
+.item1 {
+    display: flex;
+    align-items: center;
+    margin-left: 5em;
+}
+
+.circle {
+    background-color: #fff;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    /* padding: 0.25em; */
+    margin: 0.25em;
+}
+
+.top, .bottom {
+    display: flex;
+    flex-direction: row;
+    /* margin: 0.25em;   */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    height: auto;
+    width: 50%;
+    border-radius: 20px;
+    background: rgba(119, 119, 119, 0.11);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2vw;
+}
+
+.task {
+    flex-grow: 1;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 3vw;
+}
+
+.creds {
+    flex-grow: 1;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    margin-right: 3vw;
+}
+
+.main-heading {
+    font-family: 'brandberegular',sans-serif;
+    font-size: 3vw;
+}
+
+.heading-sub {
+    font-family: 'brandberegular',sans-serif;
+    font-size: 2vw;
+}
+
+#heading {
+    align-self: center;
+    font-size: 4vw;
+    margin-bottom: 4vw;
 }

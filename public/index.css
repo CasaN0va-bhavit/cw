@@ -188,22 +188,22 @@ a:hover{
 }
 
 .agent-name{
-    width: 450px;
-    height: 320px;
+    width: 22.727vw;
+    height: 16.162vw;
     flex-shrink: 0;
-    margin-left: 190px;
+    margin-left: 9.596vw;
     border-radius: 20px;
     background: rgba(119, 119, 119, 0.11);
     backdrop-filter: blur(15px);
 }
 
 .agent-image{
-    margin-top: 64px;
-    margin-left: 30px;
+    margin-top: 3.232vw;
+    margin-left: 1.515vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 1.010vw;
     align-self: center;
     justify-content: left;
 }
@@ -211,7 +211,7 @@ a:hover{
 .agent-text{
     color: #FFF;
     font-family: 'brandberegular', sans-serif;
-    font-size: 65px;
+    font-size: 3.283vw;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -222,11 +222,11 @@ a:hover{
 }
 
 .other-agents{
-    width: 450px;
-    height: 110px;
+    width: 22.727vw;
+    height: 5.556vw;
     flex-shrink: 0;
-    margin-left: 190px;
-    margin-top: 20px;
+    margin-left: 9.596vw;
+    margin-top: 1.010vw;
     border-radius: 20px;
     background: rgba(119, 119, 119, 0.11);
     backdrop-filter: blur(15px);
@@ -235,12 +235,12 @@ a:hover{
 }
 
 .other-image{
-    width: 80px;
-    height: 80px;
+    width: 4.040vw;
+    height: 4.040vw;
     flex-shrink: 0;
-    margin-top: 15px;
-    margin-left: 20px;
-    border-radius: 80px;
+    margin-top: 0.758vw;
+    margin-left: 1.010vw;
+    border-radius: 4.040vw;
     /* background: url('https://cdn.discordapp.com/attachments/1080157954570993664/1145769579008774284/image.png'), lightgray 50% / cover no-repeat; */
 }
 
@@ -252,7 +252,7 @@ a:hover{
 .other-role{
     color: #E82D2D;
     font-family: 'hauoraregular', sans-serif ;
-    font-size: 28px;
+    font-size: 1.414vw;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -260,8 +260,7 @@ a:hover{
 
 .messageGrp {
     /* border: 1px solid black; */
-    padding: 5px 0px 5px 5px ;
-    height: 700px;
+    padding: 0.253vw 0px 0.253vw 0.253vw ;
     overflow: auto;
     /* margin-left: 700px; */
     /* margin-right: 40px; */
@@ -275,11 +274,11 @@ a:hover{
     display: flex;
     flex-direction: column;
     float: right;
-    gap: 5px;
+    gap: 15px;
 }
 .message1 {
-    max-height: 400px;
-    max-width: 350px;
+    max-height: 20.202vw;
+    max-width: 17.677vw;
     font-family: 'hauoraregular', sans-serif ;
     padding : 8px;
     /* border: 2px solid #ccc; */
@@ -287,13 +286,13 @@ a:hover{
     color: white;
     backdrop-filter: blur(15px);
     background-color: #343434;
-    margin-left: 80px;
+    margin-left: 4.040vw;
     
 }
 
 .message2 {
-    max-height: 400px;
-    max-width: 350px;
+    max-height: 20.202vw;
+    max-width: 17.677vw;
     font-family: 'hauoraregular', sans-serif ;
     padding : 8px;
     /* border: 2px solid #ccc; */
@@ -301,7 +300,7 @@ a:hover{
     color: white;
     backdrop-filter: blur(15px);
     background-color: #E82D2D;
-    margin-left: 80px;
+    margin-left: 4.040vw;
     
 }
 .chatGrp{
@@ -310,20 +309,24 @@ a:hover{
     height: 75vh;
 }
 .form{
+    flex-grow: 1;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
-    max-width: 1800px;
+    max-width: 90.909vw;
+    margin: 2vw 0;
     font-family: 'hauoraregular', sans-serif ;
     /* justify-content: center;
     align-items: center; */
-    margin-left: 30px;
+    /* margin-left: 30px; */
     color: #FFF;
 }
 .input-mess{
     border-radius: 20px;
     height: 30px;
-    width: 700px;
+    width: 35.354vw;
     background: #1B1B1B;
     padding: 8px;
     font-family: 'hauoraregular', sans-serif ;
@@ -349,6 +352,16 @@ background: #131314;
     font-family: 'hauoraregular', sans-serif ;
 }
 .inputsubmit{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.inputsubmit form {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
@@ -370,7 +383,7 @@ input[type="file"] {
 #password{
     border-radius: 20px;
     height: 30px;
-    width: 200px;
+    width: 10.101vw;
     background: #1B1B1B;
     padding: 8px;
     margin-left: 3px;
@@ -384,7 +397,18 @@ input[type="file"] {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    width: 35%;
+    margin-left: 3vw;
 }
+
+.password {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .uplButton{
     border-radius: 20px;
     background-color: #E82D2D;

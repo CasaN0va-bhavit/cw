@@ -60,7 +60,7 @@
             <p class="title">NEW MISSION</p>
             
             <script>
-                // console.log(AssigningYou("asdasd"))
+                console.log(AssigningYou("asdasd"))
                 // const agent = document
         
                 function AssigningYou(name) {
@@ -68,6 +68,38 @@
                     alert(name)
                     return true
                 }
+                const Assign = document.getElementsByClassName('assign');
+                const status = document.getElementById('avail');
+                
+                // $('#assign').click(function() { 
+                //     $('#names').css({
+                //         color : 'white',
+                //         textContent : 'Assigned'
+                //     })
+                // });
+                // Assign.addEventListener('click', function(event) {
+                //     event.preventDefault();
+                //     status.style.color = 'white';
+                //     status.textContent = 'Assigned'
+                //     Assign.style.color = '#767676';
+                //     Assign.textContent = 'Assigned'
+                // });
+                const showAlert = document.getElementById('goback');
+
+                  showAlert.addEventListener('click', function() {
+                      window.location.href = '/admin'
+                  });
+                  const menu = document.getElementById("menu");
+                  const menuClose = document.getElementById("menu-close");
+                  const menuContainer = document.getElementById("menu-container")
+
+                  menu.addEventListener('click', function() {
+                      menuContainer.classList.add("active");
+                  });
+
+                  menuClose.addEventListener('click', function() {
+                      menuContainer.classList.remove("active");
+                  });
             </script>
             <div class="card-container">
             <% for (var i = 0; i < agents.length; i ++) { %>
@@ -80,22 +112,7 @@
                                     <% if (agents[i].mission === "none") { %>
                                         <p class="status" id="avail">Available</p>
                                         <script>
-                                            const Assign = document.getElementsByClassName('assign');
-                                            const status = document.getElementById('avail');
                                             
-                                            $('#assign').click(function() { 
-                                                $('#names').css({
-                                                    color : 'white',
-                                                    textContent : 'Assigned'
-                                                })
-                                            });
-                                            Assign.addEventListener('click', function(event) {
-                                                event.preventDefault();
-                                                status.style.color = 'white';
-                                                status.textContent = 'Assigned'
-                                                Assign.style.color = '#767676';
-                                                Assign.textContent = 'Assigned'
-                                            });
                                         </script>
                                     <% } else { %>
                                         <p class="status" id="avail"><%= agents[i].mission %></p>
@@ -115,14 +132,13 @@
                         <svg width="52" height="18" viewBox="0 0 52 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M50.7778 9.77782C51.2074 9.34825 51.2074 8.65176 50.7778 8.22219L43.7775 1.22183C43.3479 0.792253 42.6514 0.792252 42.2218 1.22183C41.7922 1.65141 41.7922 2.34789 42.2218 2.77746L48.4444 9L42.2218 15.2225C41.7922 15.6521 41.7922 16.3486 42.2218 16.7782C42.6514 17.2078 43.3479 17.2078 43.7775 16.7782L50.7778 9.77782ZM-9.61651e-08 10.1L50 10.1L50 7.9L9.61651e-08 7.9L-9.61651e-08 10.1Z" fill="white"/>
                             </svg>
-                        <script>
+                    </div>
+                        <!-- <script>
                             const showAlert = document.getElementById('goback');
                     
                             showAlert.addEventListener('click', function() {
                                 window.location.href = '/admin'
                             });
-                        </script>
-                        <script>
                             const menu = document.getElementById("menu");
                             const menuClose = document.getElementById("menu-close");
                             const menuContainer = document.getElementById("menu-container")
@@ -134,8 +150,7 @@
                             menuClose.addEventListener('click', function() {
                                 menuContainer.classList.remove("active");
                             });
-                        </script>
-                    </div>
+                        </script> -->
             </div> 
         </div>
     </div>        

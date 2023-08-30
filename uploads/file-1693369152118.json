@@ -1,0 +1,41 @@
+{
+  "name": "cw",
+  "version": "1.0.0",
+  "description": "This is the creative prompt of CW 2023 by AISG-46 (TS)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.15",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "deep-email-validator": "^0.1.21",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.3",
+    "fs": "^0.0.1-security",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.4.5",
+    "morse-decoder": "^3.0.1",
+    "multer": "^1.4.5-lts.1",
+    "node-email-validation": "^1.0.4",
+    "nodemon": "^3.0.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "postcss": "^8.4.28",
+    "postcss-cli": "^10.1.0",
+    "socket.io": "^4.7.2",
+    "stripe": "^13.3.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}

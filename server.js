@@ -445,6 +445,11 @@ app.post("/signup", async (req, res) => {
     }
 })
 
+
+app.get("/dashboard", (req,res) => {
+    res.render("dashboard.ejs")
+})
+
 function loginUser(req, res, next) {
     passport.authenticate('local', (err, user, info) => {
         if (err) throw err;

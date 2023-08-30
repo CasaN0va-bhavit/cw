@@ -104,9 +104,9 @@ body{
     flex-direction: column;
     width: 24.747vw;
     height: 29.949vw;
-    flex-shrink: 0;
-    border-radius: 15px;
-    background: #FFF;
+    border-radius: 20px;
+    background: rgba(119, 119, 119, 0.11);
+    backdrop-filter: blur(15px);
     justify-content: center;
     align-items: center;
 }
@@ -161,7 +161,7 @@ body{
 }
 
 .heading {
-    color: #000;
+    color: red;
     font-size: 3vw;
     font-family: 'brandberegular', sans-serif;
     margin-bottom: 4vw;
