@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assign</title>
     <link rel="stylesheet" href="assign.css">
-</head>
-<body>
+  </head>
+  <body>
     <div class="background">
-        <nav class="nav">
-          <div class="item1">
+      <nav class="nav">
+        <div class="item1">
+          <div class="line-container">
+            <div class="top">
+              <div class="circle"></div>
+              <div class="circle"></div>
+            </div>
+            <div class="bottom">
+              <div class="circle"></div>
+              <div class="circle"></div>
+            </div>
+          </div>
+          <p class="menu-text">MENU</p>
+        </div>
+        <div class="menu-container" id="menu-container">
+          <div class="line-container-idk">
             <div class="line-container">
               <div class="top">
-                <div class="circle"></div>
-                <div class="circle"></div>
+                <div class="circle" style="background: #000;"></div>
+                <div class="circle" style="background: #000;"></div>
               </div>
               <div class="bottom">
-                <div class="circle"></div>
-                <div class="circle"></div>
+                <div class="circle" style="background: #000;"></div>
+                <div class="circle" style="background: #000;"></div>
               </div>
             </div>
-            <p class="menu-text">MENU</p>
+            <p class="menu-text" id="menu-close">CLOSE</p>
           </div>
-          <div class="menu-container" id="menu-container">
-            <div class="line-container-idk">
-              <div class="line-container">
-                <div class="top">
-                  <div class="circle" style="background: #000;"></div>
-                  <div class="circle" style="background: #000;"></div>
-                </div>
-                <div class="bottom">
-                  <div class="circle" style="background: #000;"></div>
-                  <div class="circle" style="background: #000;"></div>
-                </div>
-              </div>
-              <p class="menu-text" id="menu-close">CLOSE</p>
-            </div>
-            <div class="center">
-              <a href="/index" class="amenu"><p class="heading"><span class="special-text">1.</span> CHAT</p></a> 
-              <a href="/admin" class="amenu"><p class="heading"><span class="special-text">2.</span> ADD A MISSION</p></a> 
-              <a href="/logout" class="amenu"><p class="heading"><span class="special-text">3.</span> LOGOUT</p></a> 
-            </div>
+          <div class="center">
+            <a href="/index" class="amenu"><p class="heading"><span class="special-text">1.</span> CHAT</p></a> 
+            <a href="/admin" class="amenu"><p class="heading"><span class="special-text">2.</span> ADD A MISSION</p></a> 
+            <a href="/logout" class="amenu"><p class="heading"><span class="special-text">3.</span> LOGOUT</p></a> 
           </div>
-          <div class="item2">
-            <svg width="51" height="47" viewBox="0 0 51 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+        </div>
+        <div class="item2">
+          <svg width="51" height="47" viewBox="0 0 51 47" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M23.2014 46.7178C22.0802 46.7178 21.109 45.9403 20.8637 44.8462L19.9719 40.8692C19.6362 39.3718 20.7751 37.9493 22.3096 37.9493H27.2458C36.3378 37.9493 40.8794 33.0978 40.8794 23.323C40.8794 13.5841 36.3378 8.76858 27.2458 8.76858H15.5941C14.062 8.76858 12.9235 10.187 13.2551 11.6829L15.3623 21.1886C15.4709 21.6785 15.4211 22.1667 15.2469 22.5996C14.1871 21.1039 12.4211 20.1246 10.4217 20.1246C7.73406 20.1246 5.46834 21.8941 4.77229 24.3086C4.64576 24.0933 4.55098 23.8543 4.49569 23.5967L0.0542398 2.89843C-0.265827 1.40685 0.871163 0 2.3967 0L27.102 0C43.2736 0 51 8.91233 51 23.323C51 37.7696 43.2736 46.7178 27.102 46.7178H23.2014Z" fill="#FF0000"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M10.4529 34.9785C15.4809 34.9785 19.5569 30.9025 19.5569 25.8745C19.5569 20.8465 15.4809 16.7705 10.4529 16.7705C5.42491 16.7705 1.34892 20.8465 1.34892 25.8745C1.34892 30.9025 5.42491 34.9785 10.4529 34.9785ZM10.4217 31.6244C13.6634 31.6244 16.2913 29.0501 16.2913 25.8745C16.2913 22.6989 13.6634 20.1246 10.4217 20.1246C7.17994 20.1246 4.55199 22.6989 4.55199 25.8745C4.55199 29.0501 7.17994 31.6244 10.4217 31.6244Z" fill="#FF0000"/>
               </svg>          
@@ -52,10 +52,11 @@
             <a href="/portal" style="text-decoration: none; color: white;" class="menu-text" id="home">PORTAL</a>
             <svg width="32" style="margin-left: 2em;" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12.2096 27.695V23.6061C12.2096 22.566 13.0575 21.7209 14.108 21.714H17.9561C19.0116 21.714 19.8673 22.5611 19.8673 23.6061V27.7077C19.8671 28.5908 20.579 29.3125 21.4707 29.3332H24.0361C26.5935 29.3332 28.6666 27.2807 28.6666 24.7489V13.117C28.653 12.1209 28.1806 11.1856 27.3839 10.5772L18.6103 3.58024C17.0732 2.36193 14.8883 2.36193 13.3512 3.58024L4.61601 10.5899C3.81632 11.1959 3.34316 12.1327 3.33331 13.1296V24.7489C3.33331 27.2807 5.40648 29.3332 7.96386 29.3332H10.5293C11.4431 29.3332 12.1839 28.5998 12.1839 27.695" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>          
+            </svg>          
           </div>
         </nav>
 
+        <form action="/admin" method="post">
         <div class="container">
             <div class="headings">
                 <p class="main-heading">NEW MISSION</p>
@@ -120,8 +121,10 @@
                                 <div class="agent-card">
                                     <img src="https://cdn.discordapp.com/attachments/1080157954570993664/1145754084951986246/image.png" alt="">
                                     <div class="creds">
-                                        <p class="top-div-heading-special">Agent_16E</p>
-                                        <p class="name">Captain</p>
+                                        <p class="top-div-heading-special" id="name" ></p>
+                                        <input type="text" name="nameMission" style="visibility: hidden;" id="nameMission" value="">
+                                        <input type="text" name="nameAgent" style="visibility: hidden;" id="nameAgent" value="">
+                                        <!-- <p class="name"></p> -->
                                     </div>
                                 </div>
                                     <a href="/assignAgents">
@@ -133,32 +136,48 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bottom-div-right" id="assign">
-                        <p class="top-div-heading-special">Confirm Mission</p>
+
+                    <button type="submit" style="outline: none; border: none;" class="bottom-div-right" id="assign">
+                      <p class="top-div-heading-special">Confirm Mission</p>
                         <svg width="52" height="18" viewBox="0 0 52 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M50.7778 9.77782C51.2074 9.34825 51.2074 8.65176 50.7778 8.22219L43.7775 1.22183C43.3479 0.792253 42.6514 0.792252 42.2218 1.22183C41.7922 1.65141 41.7922 2.34789 42.2218 2.77746L48.4444 9L42.2218 15.2225C41.7922 15.6521 41.7922 16.3486 42.2218 16.7782C42.6514 17.2078 43.3479 17.2078 43.7775 16.7782L50.7778 9.77782ZM-9.61651e-08 10.1L50 10.1L50 7.9L9.61651e-08 7.9L-9.61651e-08 10.1Z" fill="white"/>
                             </svg>
+                    </button>
                         <script>
                                 const showAlert = document.getElementById('assign');
                         
                                 showAlert.addEventListener('click', function() {
                                     window.location.href = '/missionAssigned'
                                 });
-                                const menu = document.getElementById("menu");
-                                    const menuClose = document.getElementById("menu-close");
-                                    const menuContainer = document.getElementById("menu-container")
+                                // const menu = document.getElementById("menu");
+                                //     const menuClose = document.getElementById("menu-close");
+                                //     const menuContainer = document.getElementById("menu-container")
 
-                                    menu.addEventListener('click', function() {
-                                        menuContainer.classList.add("active");
-                                    });
+                                //     menu.addEventListener('click', function() {
+                                //         menuContainer.classList.add("active");
+                                //     });
 
-                                    menuClose.addEventListener('click', function() {
-                                        menuContainer.classList.remove("active");
-                                });
-                        </script>   
-                    </div>
+                                //     menuClose.addEventListener('click', function() {
+                                //         menuContainer.classList.remove("active");
+                                // });
+                                var url_string = window.location.href; 
+                                var url = new URL(url_string);
+                                var c = url.searchParams.get("id");
+                                // var name = document.getElementById("name");
+                                if (c === "" || c === null || c === undefined) {
+                                  document.getElementById("name").innerText = "AgentName"
+                                }
+                                else {
+                                  document.getElementById("name").innerText = c
+                                  document.getElementById("nameAgent").value = c
+                                  document.getElementById("nameMission").value = document.getElementById("nameOfMission").innerHTML
+                                }
+                                
+                                console.log(c)
+                                </script>   
+                  </div>
                 </div>
+              </form>
             </div>
-        </div>
 </body>
 </html>

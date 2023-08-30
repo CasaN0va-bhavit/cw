@@ -36,8 +36,8 @@ body{
     background-color: rgba(19, 19, 20, 0.94);
     z-index: -100;
     /* margin-top: -vh; */
-    position: absolute;
-    top: 0;
+    /* position: absolute;
+    top: 0; */
 }
 
 
@@ -198,7 +198,7 @@ a:hover{
     justify-content: center;
     width: 80%;
     gap: 2.525vw;
-    z-index: -10;
+    /* z-index: -10; */
 }
 
 .card {

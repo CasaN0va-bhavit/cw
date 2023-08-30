@@ -152,8 +152,21 @@ app.get('/assignAgents',isAdmin,  async (req,res,next) => {
     return res.render("mission.ejs", { agents });
 })
 
-app.get('/admin',isAdmin,  async (req,res,next) => {
+app.get('/admin', async (req,res,next) => {
+
     res.render('assign.ejs');
+})
+
+app.post('/admin', async(req,res) => {
+    console.log(req.body.nameAgent)
+    console.log(req.body.missionName)
+    const agent = await User.findOne({name: req.body.nameAgent})
+    console.log(agent)
+    await User.updateOne({name: req.body.nameAgent}, {$set: {mission: req.body.missionName}})
+    agent.save()
+    console.log(agent)
+    // res.send(req.body.nameAgent + req.body.missionName);
+    res.redirect('/dashboard')
 })
 
 app.get('/missionAssigned',isAdmin,  async (req,res,next) => {
@@ -167,8 +180,6 @@ function isAdmin(req, res, next) {
       return res.status(403).json({ message: 'Permission denied' });
     }
 }
-
-  
 
 app.post('/uploadmultiple', upload.array('files', 10), (req, res, next) => {
     const files = req.files;
@@ -445,8 +456,23 @@ app.post("/signup", async (req, res) => {
     }
 })
 
-app.get("/dashboard", (req,res) => {
-    res.render("dashboard.ejs")
+app.get("/dashboard", async (req,res) => {
+    const Users = await User.find();  
+    const details = Users
+        .map((users) => {
+            try {
+                if(users.mission != "" && (users.mission != "none" && (users.mission != undefined && (users.name != "" && (users.name != "none" && users.name != undefined))))){                
+                    return {
+                        "name": users.name,
+                        "mission": users.mission,
+                }};
+            } catch (error) {
+            }
+        })
+        .filter((detail) => detail !== null);
+
+    console.log(details);
+    return res.render("dashboard.ejs", { details });
 })
 
 function loginUser(req, res, next) {

@@ -59,48 +59,7 @@
         <div class="container">
             <p class="title">NEW MISSION</p>
             
-            <script>
-                console.log(AssigningYou("asdasd"))
-                // const agent = document
-        
-                function AssigningYou(name) {
-                    // e.preventDefault()
-                    alert(name)
-                    return true
-                }
-                const Assign = document.getElementsByClassName('assign');
-                const status = document.getElementById('avail');
-                
-                // $('#assign').click(function() { 
-                //     $('#names').css({
-                //         color : 'white',
-                //         textContent : 'Assigned'
-                //     })
-                // });
-                // Assign.addEventListener('click', function(event) {
-                //     event.preventDefault();
-                //     status.style.color = 'white';
-                //     status.textContent = 'Assigned'
-                //     Assign.style.color = '#767676';
-                //     Assign.textContent = 'Assigned'
-                // });
-                const showAlert = document.getElementById('goback');
-
-                  showAlert.addEventListener('click', function() {
-                      window.location.href = '/admin'
-                  });
-                  const menu = document.getElementById("menu");
-                  const menuClose = document.getElementById("menu-close");
-                  const menuContainer = document.getElementById("menu-container")
-
-                  menu.addEventListener('click', function() {
-                      menuContainer.classList.add("active");
-                  });
-
-                  menuClose.addEventListener('click', function() {
-                      menuContainer.classList.remove("active");
-                  });
-            </script>
+            
             <div class="card-container">
             <% for (var i = 0; i < agents.length; i ++) { %>
                 <% if (agents[i] !=  null || agents[i] != undefined) { %>
@@ -153,6 +112,50 @@
                         </script> -->
             </div> 
         </div>
-    </div>        
+    </div>
+
+    <script>
+      // console.log(AssigningYou("asdasd"))
+      // const agent = document
+
+      function AssigningYou(name) {
+          // e.preventDefault()
+          // alert(name)
+          window.location.href = '/admin?id=' + name
+          return true
+      }
+      const Assign = document.getElementsByClassName('assign');
+      const status = document.getElementById('avail');
+      
+      // $('#assign').click(function() { 
+      //     $('#names').css({
+      //         color : 'white',
+      //         textContent : 'Assigned'
+      //     })
+      // });
+      // Assign.addEventListener('click', function(event) {
+      //     event.preventDefault();
+      //     status.style.color = 'white';
+      //     status.textContent = 'Assigned'
+      //     Assign.style.color = '#767676';
+      //     Assign.textContent = 'Assigned'
+      // });
+      const showAlert = document.getElementById('goback');
+
+        showAlert.addEventListener('click', function() {
+            window.location.href = '/admin'
+        });
+        const menu = document.getElementById("menu");
+        const menuClose = document.getElementById("menu-close");
+        const menuContainer = document.getElementById("menu-container")
+
+        menu.addEventListener('click', function() {
+            menuContainer.classList.add("active");
+        });
+
+        menuClose.addEventListener('click', function() {
+            menuContainer.classList.remove("active");
+        });
+  </script>
 </body>
 </html>
