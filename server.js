@@ -480,6 +480,14 @@ app.get("/dashboard", async (req,res) => {
     return res.render("dashboard.ejs", { details });
 })
 
+app.post("/dashboard", async (req,res) => {
+    console.log(req.body.agent_name)
+    const requiredUser = await User.findOne({name: req.body.agent_name})
+    await User.updateOne({name: req.body.agent_name}, {$set: {mission: "none"}})
+    req.flash("message", `${requiredUser.name}'s mission marked as done`)
+    res.redirect("/dashboard")
+})
+
 function loginUser(req, res, next) {
     passport.authenticate('local', (err, user, info) => {
         if (err) throw err;

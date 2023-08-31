@@ -60,6 +60,9 @@
           </nav>
 
           <h1 class="main-heading" id="heading">Missions</h1>
+          <% if(messages.message) { %>
+            <h1 class="heading-sub" style="align-self: center;"><%= messages.message %></h1>
+          <% } %>
           <div class="container">
             <% for(var i = 0; i <= details.length; i++) { %>
               <% if (details[i] != undefined) { %>
@@ -72,17 +75,29 @@
                           <h1 class="main-heading"><span class="special-text">Agent:</span>  <%= details[i].name %></h1>
                           <h1 class="heading-sub"><span class="special-text">Progress:</span> In progress</h1>
                       </div>
+                      <form action="/dashboard" method="post" style="align-self: center; margin-right: 2vw;">
+                        <input type="text" name="agent_name" value="<%= details[i].name %>" style="display: none;">
+                        <button type="submit" style="outline: none; margin: 0; padding: 0; cursor: pointer; border: none; background: transparent;">
+                          <svg id="done" style="cursor: pointer;" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="40" cy="40" r="39" stroke="white" stroke-width="2" stroke-dasharray="6 6"/>
+                            <path d="M55.2038 27.7036L34.5 48.4074L26.6296 40.5369L24.0371 43.1294L34.5 53.5923L57.7962 30.2961L55.2038 27.7036Z" fill="white"/>
+                            </svg>
+                        </button>
+                      </form>
                     </div>
-                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="40" cy="40" r="39" stroke="white" stroke-width="2" stroke-dasharray="6 6"/>
-                      <path d="M55.2038 27.7036L34.5 48.4074L26.6296 40.5369L24.0371 43.1294L34.5 53.5923L57.7962 30.2961L55.2038 27.7036Z" fill="white"/>
-                      </svg>
                     <% } %>
                   <% } %>
                   </div>
               </div>
 
               <script>
+                const done = document.getElementById("done");
+                done.addEventListener('click', () => {
+                  
+                });
+
+
+
                 const menu = document.getElementById("menu");
           const menuClose = document.getElementById("menu-close");
           const menuContainer = document.getElementById("menu-container")
