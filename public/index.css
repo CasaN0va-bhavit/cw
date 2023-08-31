@@ -1,3 +1,5 @@
+* {box-sizing: border-box;}
+
 body{
     width:100%;
     height: 100vh;
@@ -264,13 +266,13 @@ a:hover{
     overflow: auto;
     /* margin-left: 700px; */
     /* margin-right: 40px; */
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(50px);
     color: #343434;
     width: 75%;
     height: 75vh;
     flex-shrink: 0;
     border-radius: 20px;
-    border: 2px solid #ccc;
+    /* border: 2px solid #000; */
     display: flex;
     flex-direction: column;
     float: right;
@@ -280,14 +282,14 @@ a:hover{
     max-height: 20.202vw;
     max-width: 17.677vw;
     font-family: 'hauoraregular', sans-serif ;
-    padding : 8px;
+    padding-bottom : 8px;
     /* border: 2px solid #ccc; */
     border-radius : 0px 30px 30px 30px;
     color: white;
     backdrop-filter: blur(15px);
-    background-color: #343434;
+    background-color: #000;
     margin-left: 4.040vw;
-    
+    margin-top: 20px;
 }
 
 .message2 {
@@ -315,8 +317,9 @@ a:hover{
     justify-content: center;
     align-items: center;
     gap: 10px;
-    max-width: 90.909vw;
-    margin: 2vw 0;
+    width: 100%;
+    background-color: #000;
+    padding: 8px;
     font-family: 'hauoraregular', sans-serif ;
     /* justify-content: center;
     align-items: center; */
@@ -324,32 +327,39 @@ a:hover{
     color: #FFF;
 }
 .input-mess{
+    border: none;
+    outline: none;
     border-radius: 20px;
-    height: 30px;
-    width: 35.354vw;
+    width: 100%;
     background: #1B1B1B;
     padding: 8px;
-    font-family: 'hauoraregular', sans-serif ;
+    font-family: 'brandberegular', sans-serif;
     color: #ccc;
+    padding: 12px;
+    font-size: 1.8em;
+    /* box-shadow: 0px 0px 10px 3px red; */
+    margin-right: 8px;
 }
 
 ::-webkit-scrollbar {
-width: 2px;
+width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-background: #131314;
+    border-radius: 2px;
+background: #fff;
 }
 .submit{
     /* margin: 4px 2px; */
     border-radius: 20px;
-    background-color: #E82D2D;
+    background-color: red;
     padding: 10px 20px;
     border: none;
     color: white;
     text-decoration: none;
     cursor: pointer;    
-    font-family: 'hauoraregular', sans-serif ;
+    font-family: 'brandberegular', sans-serif;
+    font-size: 1.55em;
 }
 .inputsubmit{
     display: flex;
@@ -382,24 +392,42 @@ input[type="file"] {
    
 #password{
     border-radius: 20px;
-    height: 30px;
-    width: 10.101vw;
+    width: 100%;
     background: #1B1B1B;
     padding: 8px;
-    margin-left: 3px;
+    margin-left: 10px;
     /* align-self: center; */
-    font-family: 'hauoraregular', sans-serif ;
+    font-family: 'brandberegular', sans-serif;
     color: #ccc;
     display: flex;
     flex-direction: row;
+    border: none;
+    outline: none;
+    font-size: 1.8em;
+    padding: 12px;
+    /* box-shadow: 0px 0px 10px 3px red; */
+    margin-right: 10px;
 }
 .uploadGrp{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 35%;
-    margin-left: 3vw;
+}
+
+.messages {
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.messageHeading {
+    background: red; 
+    text-align: center; 
+    padding: 10px; 
+    border-top-right-radius: 30px; 
+    text-align: center;
+    font-family: 'brandberegular', sans-serif;
+    font-size: 1.5em;
 }
 
 .password {
@@ -411,16 +439,16 @@ input[type="file"] {
 
 .uplButton{
     border-radius: 20px;
-    background-color: #E82D2D;
+    background-color: red;
     display: flex;
     flex-direction: row;
     padding: 10px 20px;
     border: none;
     color: white;
     text-decoration: none;
-    cursor: pointer;    
-    font-family: 'hauoraregular', sans-serif ;
-    /* margin-left: 164px; */
+    cursor: pointer;
+    font-family: 'brandberegular', sans-serif;
+    font-size: 1.55em;
 }
 
 .upload{

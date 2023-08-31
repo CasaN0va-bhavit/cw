@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="portal.css">
-    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="background">
@@ -25,7 +25,7 @@
               </div>
               <p class="menu-text" id="menu">MENU</p>
             </div>
-            <div class="menu-container" id="menu-container">
+            <div class="menu-container" id="menu-container" style="z-index: 100;">
               <div class="line-container-idk">
                 <div class="line-container">
                   <div class="top">
@@ -42,7 +42,7 @@
               <div class="center">
                 <a href="/index" class="amenu"><p class="heading"><span class="special-text">1.</span> CHAT</p></a> 
                 <a href="/admin" class="amenu"><p class="heading"><span class="special-text">2.</span> ADD A MISSION</p></a> 
-                <form action="/logout" method="post">
+                <form action="/login" method="post">
                   <button style="background: transparent; border: none; outline: none;"><a href="" class="amenu"><p class="heading"><span class="special-text">3.</span> LOGOUT</p></a></button>
                 </form>
                 <a href="/dashboard" class="amenu"><p class="heading"><span class="special-text">4.</span> DASHBOARD</p></a> 
@@ -62,20 +62,21 @@
               </svg>          
             </div>
           </nav>
+          
         <div class="container">
 
           <div class="messageGrp">
             <script>
                     $(function () {
-                    var ChatDiv = $('messageGrp');
+                    var ChatDiv = $('.messageGrp');
                     var height = ChatDiv[0].scrollHeight;
                     ChatDiv.scrollTop(height);
                 });
                 </script>
-                    
+                    <div style="overflow: auto; flex-grow: 1;">
                 <% for (var i = 0; i < details.length; i ++) { %>
                             <div class="message1">
-                                <p> <b><u><%=details[i].name  %></u></b> <br>  <span class="messages">  <%= details[i].realMessage %></span></p>
+                                <div class='messageHeading'><%=details[i].name  %></div>  <p class="messages">  <%= details[i].realMessage %></p>
                             </div>
                             <script>
                                 $(function () {
@@ -86,17 +87,18 @@
                             </script>
                         
                 <% } %>
+                          </div>
                 <div class="chatGrp">
                     <div class="form">
-                        <div class="inputsubmit">
-                            <form action="/post-message" method="post" >
+                        <!-- <div class="inputsubmit"> -->
+                            <form action="/post-message" method="post" class="inputsubmit">
                                 <input type="text" name="message" placeholder="Enter your message" class="input-mess">
                                 <button type="submit" class="submit">Submit</button>
                             </form>
-                        </div>
+                        <!-- </div> -->
                         <div class="uploadGrp">
                             <form action="/upload" method="post" enctype="multipart/form-data" class="upload">
-                                <div >
+                                <div>
                                     <label for="file" class="file">
                                         <svg width="30" height="29" viewBox="0 0 30 29" style="margin-top: 4px; color:#FFF" fill="white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <rect width="30" height="29" fill="url(#pattern0)"/>
@@ -111,7 +113,6 @@
                                     </label>
                                 </div>
                                 <div class="password">
-                                    <label for="password">Password:</label>
                                     <input type="password" id="password" name="password" placeholder="Enter your password"/>
                                 
                                     <button style="grid-column: span 2;" type="submit" class="uplButton">Share</button>
