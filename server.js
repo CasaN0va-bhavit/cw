@@ -158,15 +158,20 @@ app.get('/admin', async (req,res,next) => {
 })
 
 app.post('/admin', async(req,res) => {
-    console.log(req.body.nameAgent)
-    console.log(req.body.missionName)
-    const agent = await User.findOne({name: req.body.nameAgent})
-    console.log(agent)
-    await User.updateOne({name: req.body.nameAgent}, {$set: {mission: req.body.missionName}})
-    agent.save()
-    console.log(agent)
-    // res.send(req.body.nameAgent + req.body.missionName);
-    res.redirect('/dashboard')
+    if (req.body.nameAgent === undefined || req.body.nameAgent === "" || req.body.missionName === "" || req.body.missionName === undefined) {
+        req.flash("error", "Please select an agent or enter the mission's name before continuining")
+        res.redirect('/admin')
+    } else {
+        console.log(req.body.nameAgent)
+        console.log(req.body.missionName)
+        const agent = await User.findOne({name: req.body.nameAgent})
+        console.log(agent)
+        await User.updateOne({name: req.body.nameAgent}, {$set: {mission: req.body.missionName}})
+        agent.save()
+        console.log(agent)
+        // res.send(req.body.nameAgent + req.body.missionName);
+        res.redirect('/dashboard')
+    }
 })
 
 app.get('/missionAssigned',isAdmin,  async (req,res,next) => {

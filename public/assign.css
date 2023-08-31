@@ -383,7 +383,8 @@ a:hover{
 }
 
 .agent-card {
-    width: 17.475vw;
+    width: auto;
+    gap: 1vw;
     height: 6.515vw;
     flex-shrink: 0;
     border-radius: 20px;
@@ -399,11 +400,13 @@ a:hover{
 .creds {
     display: flex;
     flex-direction: column;
-    margin-left: 2vw;
+    /* margin-left: 2vw; */
+    margin-right: 1vw;
 }
 
 .agent-card img {
     width: 4.040vw;
     height: 4.040vw;
     flex-shrink: 0;
+    margin-left: 1vw;
 }
