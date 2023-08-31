@@ -125,7 +125,7 @@ const upload = multer({
 
 })
 
-app.get('/assignAgents',isAdmin,  async (req,res,next) => {
+app.get('/assignAgents',isAdmin, checkNotVerified,  async (req,res,next) => {
     var users = await User.find();
     users = JSON.parse(JSON.stringify(users))
     // const agents = users.map((agent) => {
@@ -152,14 +152,13 @@ app.get('/assignAgents',isAdmin,  async (req,res,next) => {
     return res.render("mission.ejs", { agents });
 })
 
-app.get('/admin', async (req,res,next) => {
-
+app.get('/admin', checkNotVerified , async (req,res,next) => {
     res.render('assign.ejs');
 })
 
-app.post('/admin', async(req,res) => {
+app.post('/admin', checkNotVerified, async(req,res) => {
     if (req.body.nameAgent === undefined || req.body.nameAgent === "" || req.body.missionName === "" || req.body.missionName === undefined) {
-        req.flash("error", "Please select an agent or enter the mission's name before continuining")
+        req.flash("error", "Please select an agent or enter the mission's name before continuing")
         res.redirect('/admin')
     } else {
         console.log(req.body.nameAgent)
@@ -174,7 +173,7 @@ app.post('/admin', async(req,res) => {
     }
 })
 
-app.get('/missionAssigned',isAdmin,  async (req,res,next) => {
+app.get('/missionAssigned',isAdmin, checkNotVerified,  async (req,res,next) => {
     res.render('missionInfo.ejs');
 })
 
@@ -324,7 +323,6 @@ app.get("/verify", (req,res) => {
 
 app.get("/123", (req,res) => {
     res.render("test.ejs");
-
 });
 
 app.get("/portal",checkNotVerified,checkAuthenticated, (req,res) => {
@@ -337,7 +335,7 @@ app.post("/profile", upload.single('img'), (req, res) =>{
     return res.redirect("/")
 });
 
-app.get('/agents', async (req,res) => {
+app.get('/agents',checkNotVerified , async (req,res) => {
     var users = await User.find();
     users = JSON.parse(JSON.stringify(users))
     // const agents = users.map((agent) => {
@@ -461,7 +459,7 @@ app.post("/signup", async (req, res) => {
     }
 })
 
-app.get("/dashboard", async (req,res) => {
+app.get("/dashboard",checkNotVerified , async (req,res) => {
     const Users = await User.find();  
     const details = Users
         .map((users) => {
@@ -475,15 +473,33 @@ app.get("/dashboard", async (req,res) => {
             }
         })
         .filter((detail) => detail !== null);
+    const OtherUsers = await User.find();  
+    const completed = OtherUsers
+        .map((others) => {
+            try {
+                if(others.done != "" && (others.done != "none" && (others.done != undefined && (others.name != "" && (others.name != "none" && others.name != undefined))))){                
+                    return {
+                        "name": others.name,
+                        "done": others.done,
+                }}                
+            } catch (error) {
+            }
+        })
+        .filter((otherdetail) => otherdetail !== null);
 
-    console.log(details);
-    return res.render("dashboard.ejs", { details });
+    console.log(OtherUsers);
+    return res.render("dashboard.ejs", { details, completed });
 })
 
-app.post("/dashboard", async (req,res) => {
+app.post("/dashboard",checkNotVerified , async (req,res) => {
     console.log(req.body.agent_name)
     const requiredUser = await User.findOne({name: req.body.agent_name})
     await User.updateOne({name: req.body.agent_name}, {$set: {mission: "none"}})
+    const done =  requiredUser.done
+    console.log(done, "done")
+    const toUpload = [...done, req.body.agent_name]
+    console.log(toUpload)
+    await User.updateOne({name: req.body.agent_name}, {$set: {done: toUpload}})
     req.flash("message", `${requiredUser.name}'s mission marked as done`)
     res.redirect("/dashboard")
 })

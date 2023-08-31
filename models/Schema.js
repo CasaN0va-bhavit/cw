@@ -21,7 +21,8 @@ const userSchema = new mongoose.Schema({
     mission:{
         type:String,
         required:true
-    }
+    },
+    done: []
 })
 
 
