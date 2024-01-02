@@ -89,6 +89,32 @@
                     <% } %>
                   <% } %>
                   </div>
+
+                  <h1 class="main-heading" id="heading">Completerd missions</h1>
+                  <div class="container">
+                    <% for(var i = 0; i <= completed.length; i++) { %>
+                      <% if (completed[i] != undefined || completed[i] !== '') { %>
+                        <% for (var j = 0; j <= completed[i].done.length; j++) { %>
+                          <% if (completed[i].done[j] != '') { %>
+                      <div class="card">
+                              <div class="task">
+                                  <h1 class="main-heading"><span class="special-text">Name:</span> <%= completed[i].name %></h1>
+                                  <h1 class="heading-sub"><span class="special-text">Date:</span> 1/09/23</h1>
+                              </div>
+                              <div class="creds">
+                                  <h1 class="main-heading"><span class="special-text">Agent:</span>  <%= completed[i].done[j] %></h1>
+                                  <h1 class="heading-sub"><span class="special-text">Progress:</span> Completed</h1>
+                              </div>
+                            </div>
+                            <% } %>
+                            <% } %>
+                              <% } %>
+                              <% } %>
+                            </div>
+                            
+                          </div>
+                          
+                      
                   
           
 

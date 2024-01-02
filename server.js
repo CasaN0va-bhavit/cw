@@ -436,7 +436,7 @@ app.post("/signup", async (req, res) => {
         // const validOrNot = validator.is_email_valid(req.body.email);
         const validOrNot = true;
         const requiredUser = await User.findOne({name: req.body.username})
-        if (validOrNot && requiredUser) {
+        if (true) {
             try {
                 const hashedPassword = await bcrypt.hash(req.body.password, 10);
                 const newUser = new User({
